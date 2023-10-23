@@ -1,5 +1,5 @@
 package entity;
 
-class Player {
+class Team {
 
 }
