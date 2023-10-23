@@ -4,6 +4,7 @@ public class HumanUser implements User{
 
     private final String username;
     private final String password;
+    public Team team = null;
 
     /**
      * Requires: password is valid.
@@ -16,7 +17,9 @@ public class HumanUser implements User{
     }
 
     @Override
-    public String getName() {
-        return username;
+    public String getName() {return username;
     }
+    @Override
+    public Team getTeam() {return team;}
+
 }
