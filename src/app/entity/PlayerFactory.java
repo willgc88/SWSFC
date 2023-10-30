@@ -1,4 +1,4 @@
-package entity;
+package app.entity;
 
 public class PlayerFactory {
     public Player create(String firstname, String lastname, String nation, String club, int age, int playerID) {

@@ -1,7 +1,6 @@
-package entity;
+package users.entity;
 
-public class HumanUserFactory implements UserFactory{
-
+public class ComputerUserFactory implements UserFactory{
     @Override
     public User create(String name) {
         return null;

@@ -1,8 +1,9 @@
-package entity;
+package app.entity;
 
 import java.util.List;
 
-class Team {
+public class Team {
+    String teamName;
     List<Player> roster;
     int rating;
     int chemistry;

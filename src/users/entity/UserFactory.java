@@ -1,4 +1,4 @@
-package entity;
+package users.entity;
 
 
 public interface UserFactory {

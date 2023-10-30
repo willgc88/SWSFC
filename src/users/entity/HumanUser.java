@@ -1,4 +1,6 @@
-package entity;
+package users.entity;
+
+import app.entity.Team;
 
 public class HumanUser implements User{
 
