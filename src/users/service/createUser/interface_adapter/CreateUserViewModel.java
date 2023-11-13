@@ -11,6 +11,7 @@ public class CreateUserViewModel extends ViewModel {
     public static final String USERNAME_LABEL = "Choose username";
 
     public static final String CREATE_USER_BUTTON_LABEL = "Create User";
+    public static final String EXIT_BUTTON_LABEL = "Exit";
 
     private CreateUserState state = new CreateUserState();
 

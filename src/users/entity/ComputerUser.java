@@ -1,6 +1,6 @@
 package users.entity;
 
-import app.entity.Team;
+import teams.entity.Team;
 
 public class ComputerUser implements User{
     private final String name = "Computer";
