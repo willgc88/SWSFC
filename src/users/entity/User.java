@@ -1,6 +1,6 @@
 package users.entity;
 
-import app.entity.Team;
+import teams.entity.Team;
 
 public interface User {
     String getName();

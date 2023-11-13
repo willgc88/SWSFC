@@ -1,4 +1,4 @@
-package app.entity;
+package teams.entity;
 
 public class PlayerStats {
 
