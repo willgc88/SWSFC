@@ -15,6 +15,7 @@ public class CreateUserInteractor implements CreateUserInputBoundary{
         this.createUserDataAccessObject = createUserDataAccessObject;
         this.userFactory = userFactory;
         this.userPresenter = userPresenter;
+
     }
 
     @Override
@@ -23,6 +24,7 @@ public class CreateUserInteractor implements CreateUserInputBoundary{
             userPresenter.prepareFailView("User already exists.");}
         else {
             User user = userFactory.create(createUserInputData.getUsername());
+
             createUserDataAccessObject.save(user);
 
             CreateUserOutputData createUserOutputData = new CreateUserOutputData(user.getName(), false);

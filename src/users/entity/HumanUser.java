@@ -16,8 +16,7 @@ public class HumanUser implements User{
     }
 
     @Override
-    public String getName() {return username;
-    }
+    public String getName() {return username;}
     @Override
     public Team getTeam() {return team;}
 
