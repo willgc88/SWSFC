@@ -27,7 +27,7 @@ public class CreateUserInteractor implements CreateUserInputBoundary{
 
             createUserDataAccessObject.save(user);
 
-            CreateUserOutputData createUserOutputData = new CreateUserOutputData(user.getName(), false);
+            CreateUserOutputData createUserOutputData = new CreateUserOutputData(user.getName(), user.getTeam(), false);
             userPresenter.prepareSuccessView(createUserOutputData);
         }
     }

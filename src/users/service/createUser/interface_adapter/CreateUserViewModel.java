@@ -1,7 +1,6 @@
 package users.service.createUser.interface_adapter;
 
-import users.service.createUser.CreateUserInputData;
-import users.service.createUser.ViewModel;
+import view.ViewModel;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;

@@ -1,4 +1,4 @@
-package users.service.createUser;
+package view;
 
 import java.beans.PropertyChangeListener;
 
