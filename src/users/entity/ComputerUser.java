@@ -1,4 +1,6 @@
-package entity;
+package users.entity;
+
+import teams.entity.Team;
 
 public class ComputerUser implements User{
     private final String name = "Computer";

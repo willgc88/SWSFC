@@ -1,6 +1,6 @@
-package entity;
+package teams.entity;
 
-class Player {
+public class Player {
 
     final String firstname;
     final String lastname;
