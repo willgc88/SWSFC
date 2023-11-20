@@ -19,7 +19,7 @@ public class StartupView extends JPanel implements ActionListener, PropertyChang
         this.startupViewModel = startupViewModel;
         startupViewModel.addPropertyChangeListener(this);
 
-        JLabel title = new JLabel("Startup");
+        JLabel title = new JLabel("Select an option");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JPanel buttons = new JPanel();
