@@ -2,8 +2,7 @@ package teams.service.createTeam;
 
 import teams.entity.Team;
 import teams.entity.TeamFactory;
-import users.entity.User;
-import users.service.createUser.CreateUserOutputData;
+import users.service.createUser.CreateUserDataAccessInterface;
 
 
 public class CreateTeamInteractor implements CreateTeamInputBoundary {
@@ -11,7 +10,7 @@ public class CreateTeamInteractor implements CreateTeamInputBoundary {
     final CreateTeamOutputBoundary teamPresenter;
     final TeamFactory teamFactory;
 
-    public CreateTeamInteractor(CreateTeamDataAccessInterface createTeamDataAccessObject, CreateTeamOutputBoundary teamPresenter, TeamFactory teamFactory) {
+    public CreateTeamInteractor(CreateUserDataAccessInterface createTeamDataAccessObject, CreateTeamOutputBoundary teamPresenter, TeamFactory teamFactory) {
         this.createTeamDataAccessObject = createTeamDataAccessObject;
         this.teamPresenter = teamPresenter;
         this.teamFactory = teamFactory;

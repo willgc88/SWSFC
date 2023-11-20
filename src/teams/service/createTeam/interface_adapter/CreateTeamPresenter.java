@@ -19,12 +19,12 @@ public class CreateTeamPresenter implements CreateTeamOutputBoundary {
 
     @Override
     public void prepareSuccessView(CreateTeamOutputData team) {
-        DraftState draftState = draftViewModel.getState();
+        /*DraftState draftState = draftViewModel.getState();
         draftState.setTeam(response.getTeam());
         this.draftViewModel.setState(draftState);
         this.draftViewModel.firePropertyChanged();
 
-        this.draftViewModel.setActiveView(draftViewModel.getViewName());
+        this.draftViewModel.setActiveView(draftViewModel.getViewName());*/
         this.viewManagerModel.firePropertyChanged();
 
     }
@@ -32,7 +32,7 @@ public class CreateTeamPresenter implements CreateTeamOutputBoundary {
     @Override
     public void prepareFailView(String error) {
         CreateTeamState createTeamState = createTeamViewModel.getState();
-        createTeamState.setTeamError(error);
+        createTeamState.setTeamNameError(error);
         createTeamViewModel.firePropertyChanged();
     }
 }

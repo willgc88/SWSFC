@@ -4,6 +4,7 @@ import data_access.FileUserDataAccessObject;
 import teams.service.createTeam.interface_adapter.CreateTeamViewModel;
 import users.entity.HumanUserFactory;
 import users.service.createUser.interface_adapter.CreateUserViewModel;
+import view.DraftViewModel;
 import view.ViewManager;
 import view.ViewManagerModel;
 import view.teams.CreateTeamView;
@@ -38,6 +39,7 @@ public class Main {
         // be observed by the Views.
         CreateTeamViewModel createTeamViewModel = new CreateTeamViewModel();
         CreateUserViewModel createUserViewModel = new CreateUserViewModel();
+        DraftViewModel draftViewModel = new DraftViewModel();
 
         FileUserDataAccessObject userDataAccessObject;
         try {
@@ -50,8 +52,8 @@ public class Main {
         views.add(createUserView, createUserView.viewName);
 
 
-       /* CreateTeamView createTeamView = new CreateTeamView(createTeamViewModel);
-        views.add(createTeamView, createTeamView.viewName);*/
+        CreateTeamView createTeamView = CreateTeamUseCaseFactory.create(viewManagerModel, draftViewModel, createTeamViewModel, userDataAccessObject);
+        views.add(createTeamView, createTeamView.viewName);
 
         viewManagerModel.setActiveView(createUserView.viewName);
         viewManagerModel.firePropertyChanged();

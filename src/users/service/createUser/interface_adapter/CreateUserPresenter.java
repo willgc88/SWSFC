@@ -1,9 +1,9 @@
 package users.service.createUser.interface_adapter;
 
+import teams.service.createTeam.CreateTeamOutputData;
 import teams.service.createTeam.interface_adapter.CreateTeamState;
 import teams.service.createTeam.interface_adapter.CreateTeamViewModel;
 import users.service.createUser.CreateUserOutputBoundary;
-import users.service.createUser.CreateUserOutputData;
 import view.ViewManagerModel;
 
 public class CreateUserPresenter implements CreateUserOutputBoundary {
@@ -18,9 +18,9 @@ public class CreateUserPresenter implements CreateUserOutputBoundary {
     }
 
     @Override
-    public void prepareSuccessView(CreateUserOutputData response) {
+    public void prepareSuccessView(CreateTeamOutputData response) {
         CreateTeamState createTeamState = createTeamViewModel.getState();
-        createTeamState.setTeam(response.getTeam());
+        createTeamState.setTeamName(response.getTeamName());
         this.createTeamViewModel.setState(createTeamState);
         this.createTeamViewModel.firePropertyChanged();
 
