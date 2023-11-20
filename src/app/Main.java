@@ -3,11 +3,14 @@ package app;
 import data_access.FileUserDataAccessObject;
 import teams.service.createTeam.interface_adapter.CreateTeamViewModel;
 import users.entity.HumanUserFactory;
+import view.startup.StartupController;
+import view.startup.StartupInteractor;
 import view.startup.StartupView;
 import view.startup.StartupViewModel;
 import users.service.createUser.interface_adapter.CreateUserViewModel;
 import view.ViewManager;
 import view.ViewManagerModel;
+import view.teams.CreateTeamView;
 import view.users.CreateUserView;
 
 import javax.swing.*;
@@ -54,9 +57,8 @@ public class Main {
         CreateUserView createUserView = CreateUserUseCaseFactory.create(viewManagerModel, createTeamViewModel, createUserViewModel, userDataAccessObject);
         views.add(createUserView, createUserView.viewName);
 
-
-//        CreateTeamView createTeamView = new CreateTeamView(createTeamViewModel);
-//        views.add(createTeamView, createTeamView.viewName);
+        CreateTeamView createTeamView = new CreateTeamView(createTeamViewModel);
+        views.add(createTeamView, createTeamView.viewName);
 
         viewManagerModel.setActiveView(startupView.viewName);
         viewManagerModel.firePropertyChanged();
