@@ -10,16 +10,17 @@ import java.beans.PropertyChangeListener;
 public class StartupView extends JPanel implements ActionListener, PropertyChangeListener {
 
     public final String viewName = "startup";
-
     private final StartupViewModel startupViewModel;
+    private final StartupController startupController;
     private final JButton signup;
     private final JButton login;
 
-    public StartupView(StartupViewModel startupViewModel) {
+    public StartupView(StartupViewModel startupViewModel, StartupController startupController) {
         this.startupViewModel = startupViewModel;
+        this.startupController = startupController;
         startupViewModel.addPropertyChangeListener(this);
 
-        JLabel title = new JLabel("Startup");
+        JLabel title = new JLabel("Select an option");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JPanel buttons = new JPanel();
@@ -32,8 +33,7 @@ public class StartupView extends JPanel implements ActionListener, PropertyChang
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(signup)) {
-                            // go to signup view
-                            System.out.println("signup");
+                            startupController.execute(false);
                         }
                     }
                 }
@@ -43,8 +43,7 @@ public class StartupView extends JPanel implements ActionListener, PropertyChang
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(login)) {
-                            // go to login view
-                            System.out.println("login");
+                            startupController.execute(true);
                         }
                     }
                 }
