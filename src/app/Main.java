@@ -3,10 +3,8 @@ package app;
 import data_access.FileUserDataAccessObject;
 import teams.service.createTeam.interface_adapter.CreateTeamViewModel;
 import users.entity.HumanUserFactory;
-import view.startup.StartupController;
-import view.startup.StartupInteractor;
-import view.startup.StartupView;
-import view.startup.StartupViewModel;
+import users.service.existingUser.interface_adapter.ExistingUserViewModel;
+import view.startup.*;
 import users.service.createUser.interface_adapter.CreateUserViewModel;
 import view.ViewManager;
 import view.ViewManagerModel;
@@ -43,6 +41,7 @@ public class Main {
         StartupViewModel startupViewModel = new StartupViewModel();
         CreateTeamViewModel createTeamViewModel = new CreateTeamViewModel();
         CreateUserViewModel createUserViewModel = new CreateUserViewModel();
+        ExistingUserViewModel existingUserViewModel = new ExistingUserViewModel();
 
         FileUserDataAccessObject userDataAccessObject;
         try {
@@ -51,14 +50,14 @@ public class Main {
             throw new RuntimeException(e);
         }
 
-        StartupView startupView = new StartupView(startupViewModel);
+        StartupView startupView = StartupUseCaseFactory.create(viewManagerModel, startupViewModel, createUserViewModel, existingUserViewModel);
         views.add(startupView, startupView.viewName);
 
         CreateUserView createUserView = CreateUserUseCaseFactory.create(viewManagerModel, createTeamViewModel, createUserViewModel, userDataAccessObject);
         views.add(createUserView, createUserView.viewName);
 
         CreateTeamView createTeamView = new CreateTeamView(createTeamViewModel);
-        views.add(createTeamView, createTeamView.viewName);
+        // views.add(createTeamView, createTeamView.viewName);
 
         viewManagerModel.setActiveView(startupView.viewName);
         viewManagerModel.firePropertyChanged();

@@ -15,9 +15,8 @@ public class StartupView extends JPanel implements ActionListener, PropertyChang
     private final JButton signup;
     private final JButton login;
 
-    public StartupView(StartupViewModel startupViewModel) {
+    public StartupView(StartupViewModel startupViewModel, StartupController startupController) {
         this.startupViewModel = startupViewModel;
-
         this.startupController = startupController;
         startupViewModel.addPropertyChangeListener(this);
 

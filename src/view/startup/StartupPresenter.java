@@ -14,11 +14,13 @@ class StartupPresenter implements StartupOutputBoundary {
 
     StartupPresenter(StartupViewModel startupViewModel,
                      CreateUserViewModel createUserViewModel,
-                     ExistingUserViewModel existingUserViewModel) {
+                     ExistingUserViewModel existingUserViewModel,
+                     ViewManagerModel viewManagerModel) {
 
         this.startupViewModel = startupViewModel;
         this.createUserViewModel = createUserViewModel;
         this.existingUserViewModel = existingUserViewModel;
+        this.viewManagerModel = viewManagerModel;
     }
 
     public void prepareCreateUserView() {
