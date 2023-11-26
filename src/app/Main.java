@@ -3,11 +3,12 @@ package app;
 import data_access.FileUserDataAccessObject;
 import teams.service.createTeam.interface_adapter.CreateTeamViewModel;
 import users.entity.HumanUserFactory;
-import view.startup.StartupView;
-import view.startup.StartupViewModel;
+import users.service.existingUser.interface_adapter.ExistingUserViewModel;
+import view.startup.*;
 import users.service.createUser.interface_adapter.CreateUserViewModel;
 import view.ViewManager;
 import view.ViewManagerModel;
+import view.teams.CreateTeamView;
 import view.users.CreateUserView;
 
 import javax.swing.*;
@@ -20,7 +21,7 @@ public class Main {
         // various cards, and the layout, and stitch them together.
 
         // The main application window.
-        JFrame application = new JFrame("SWSFC");
+        JFrame application = new JFrame("SWSFC Draft Simulator");
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         CardLayout cardLayout = new CardLayout();
@@ -40,6 +41,7 @@ public class Main {
         StartupViewModel startupViewModel = new StartupViewModel();
         CreateTeamViewModel createTeamViewModel = new CreateTeamViewModel();
         CreateUserViewModel createUserViewModel = new CreateUserViewModel();
+        ExistingUserViewModel existingUserViewModel = new ExistingUserViewModel();
 
         FileUserDataAccessObject userDataAccessObject;
         try {
@@ -48,15 +50,14 @@ public class Main {
             throw new RuntimeException(e);
         }
 
-        StartupView startupView = new StartupView(startupViewModel);
+        StartupView startupView = StartupUseCaseFactory.create(viewManagerModel, startupViewModel, createUserViewModel, existingUserViewModel);
         views.add(startupView, startupView.viewName);
 
         CreateUserView createUserView = CreateUserUseCaseFactory.create(viewManagerModel, createTeamViewModel, createUserViewModel, userDataAccessObject);
         views.add(createUserView, createUserView.viewName);
 
-
-//        CreateTeamView createTeamView = new CreateTeamView(createTeamViewModel);
-//        views.add(createTeamView, createTeamView.viewName);
+        CreateTeamView createTeamView = new CreateTeamView(createTeamViewModel);
+        // views.add(createTeamView, createTeamView.viewName);
 
         viewManagerModel.setActiveView(startupView.viewName);
         viewManagerModel.firePropertyChanged();
