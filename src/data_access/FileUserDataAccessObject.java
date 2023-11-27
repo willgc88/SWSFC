@@ -1,6 +1,7 @@
 package data_access;
 
 import teams.entity.Team;
+import teams.service.createTeam.CreateTeamDataAccessInterface;
 import users.entity.User;
 import users.entity.UserFactory;
 import users.service.createUser.CreateUserDataAccessInterface;
@@ -12,7 +13,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class FileUserDataAccessObject implements CreateUserDataAccessInterface {
+public class FileUserDataAccessObject implements CreateUserDataAccessInterface, CreateTeamDataAccessInterface {
 
     private final File csvFile;
 
@@ -88,5 +89,27 @@ public class FileUserDataAccessObject implements CreateUserDataAccessInterface {
     @Override
     public boolean existsByName(String identifier) {
         return accounts.containsKey(identifier);
+    }
+
+    @Override
+    public void save(Team team) {
+        BufferedWriter writerTeam;
+        try {
+            writerTeam = new BufferedWriter(new FileWriter(csvFile));
+            writerTeam.write(String.join(",", headers.keySet()));
+            writerTeam.newLine();
+
+            for (User user : accounts.values()) {
+                String line = String.format("%s,%s",
+                        user.getName(), user.getTeam());
+                writerTeam.write(line);
+                writerTeam.newLine();
+            }
+
+            writerTeam.close();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

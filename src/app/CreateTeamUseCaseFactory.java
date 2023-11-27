@@ -1,6 +1,7 @@
 package app;
 
 import teams.entity.TeamFactory;
+import teams.service.createTeam.CreateTeamDataAccessInterface;
 import teams.service.createTeam.CreateTeamInputBoundary;
 import teams.service.createTeam.CreateTeamInteractor;
 import teams.service.createTeam.CreateTeamOutputBoundary;
@@ -20,10 +21,10 @@ public class CreateTeamUseCaseFactory {
     }
 
     public static CreateTeamView create(
-            ViewManagerModel viewManagerModel, DraftViewModel draftViewModel, CreateTeamViewModel createTeamViewModel, CreateUserDataAccessInterface createUserDataAccessObject) {
+            ViewManagerModel viewManagerModel, DraftViewModel draftViewModel, CreateTeamViewModel createTeamViewModel, CreateTeamDataAccessInterface createTeamDataAccessObject) {
 
         try {
-            CreateTeamController createTeamController = createTeamUseCase(viewManagerModel, createTeamViewModel, draftViewModel, createUserDataAccessObject);
+            CreateTeamController createTeamController = createTeamUseCase(viewManagerModel, createTeamViewModel, draftViewModel, createTeamDataAccessObject);
             return new CreateTeamView(createTeamController, createTeamViewModel);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Could not open the data file.");
@@ -32,13 +33,13 @@ public class CreateTeamUseCaseFactory {
         return null;
     }
 
-    private static CreateTeamController createTeamUseCase(ViewManagerModel viewManagerModel, CreateTeamViewModel createTeamViewModel, DraftViewModel draftViewModel, CreateUserDataAccessInterface createUserDataAccessObject) throws IOException {
+    private static CreateTeamController createTeamUseCase(ViewManagerModel viewManagerModel, CreateTeamViewModel createTeamViewModel, DraftViewModel draftViewModel, CreateTeamDataAccessInterface createTeamDataAccessObject) throws IOException {
         // Notice how we pass this method's parameters to the Presenter.
         CreateTeamOutputBoundary createTeamOutputBoundary = new CreateTeamPresenter(createTeamViewModel, draftViewModel, viewManagerModel);
         TeamFactory teamFactory = new TeamFactory();
 
         CreateTeamInputBoundary createTeamInteractor = new CreateTeamInteractor(
-                createUserDataAccessObject, createTeamOutputBoundary, teamFactory);
+                createTeamDataAccessObject, createTeamOutputBoundary, teamFactory);
 
         return new CreateTeamController(createTeamInteractor);
     }
