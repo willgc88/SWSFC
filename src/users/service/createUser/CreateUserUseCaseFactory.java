@@ -1,4 +1,4 @@
-package app;
+package users.service.createUser;
 
 import teams.service.createTeam.interface_adapter.CreateTeamViewModel;
 import users.entity.HumanUserFactory;

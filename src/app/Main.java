@@ -3,6 +3,7 @@ package app;
 import data_access.FileUserDataAccessObject;
 import teams.service.createTeam.interface_adapter.CreateTeamViewModel;
 import users.entity.HumanUserFactory;
+import users.service.createUser.CreateUserUseCaseFactory;
 import users.service.existingUser.interface_adapter.ExistingUserViewModel;
 import view.startup.*;
 import users.service.createUser.interface_adapter.CreateUserViewModel;
@@ -52,6 +53,9 @@ public class Main {
 
         StartupView startupView = StartupUseCaseFactory.create(viewManagerModel, startupViewModel, createUserViewModel, existingUserViewModel);
         views.add(startupView, startupView.viewName);
+
+        // ExistingUserView existingUserView = ExistingUserUseCaseFactory.create();
+        // views.add(existingUserView, existingUserView.viewName);
 
         CreateUserView createUserView = CreateUserUseCaseFactory.create(viewManagerModel, createTeamViewModel, createUserViewModel, userDataAccessObject);
         views.add(createUserView, createUserView.viewName);
