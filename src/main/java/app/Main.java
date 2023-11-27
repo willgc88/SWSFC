@@ -1,12 +1,14 @@
 package app;
 
 import data_access.FileUserDataAccessObject;
+import draft.DraftController;
 import teams.data_access.FileTeamDataAccessObject;
 import teams.entity.TeamFactory;
 import teams.service.createTeam.interface_adapter.CreateTeamViewModel;
 import users.entity.HumanUserFactory;
 import users.service.createUser.CreateUserUseCaseFactory;
 import users.service.existingUser.interface_adapter.ExistingUserViewModel;
+import view.draft.DraftView;
 import view.startup.*;
 import users.service.createUser.interface_adapter.CreateUserViewModel;
 import view.DraftViewModel;
@@ -64,18 +66,20 @@ public class Main {
 
         StartupView startupView = StartupUseCaseFactory.create(viewManagerModel, startupViewModel, createUserViewModel, existingUserViewModel);
         views.add(startupView, startupView.viewName);
+
         CreateUserView createUserView = CreateUserUseCaseFactory.create(viewManagerModel, createUserViewModel, createTeamViewModel, userDataAccessObject);
         views.add(createUserView, createUserView.viewName);
+
         // ExistingUserView existingUserView = ExistingUserUseCaseFactory.create();
         // views.add(existingUserView, existingUserView.viewName);
 
         CreateTeamView createTeamView = CreateTeamUseCaseFactory.create(viewManagerModel, draftViewModel, createTeamViewModel, teamDataAccessObject);
         views.add(createTeamView, createTeamView.viewName);
 
+        DraftView draftView = new DraftView(new DraftController(), new DraftViewModel());
+        views.add(draftView, draftView.viewName);
 
-
-
-        viewManagerModel.setActiveView(startupView.viewName);
+        viewManagerModel.setActiveView(draftView.viewName);
         viewManagerModel.firePropertyChanged();
 
         application.pack();
