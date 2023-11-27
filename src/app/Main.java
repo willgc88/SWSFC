@@ -63,7 +63,7 @@ public class Main {
         CreateTeamView createTeamView = CreateTeamUseCaseFactory.create(viewManagerModel, draftViewModel, createTeamViewModel, teamDataAccessObject);
         views.add(createTeamView, createTeamView.viewName);
 
-        viewManagerModel.setActiveView(startupView.viewName);
+        viewManagerModel.setActiveView(createUserView.viewName);
         viewManagerModel.firePropertyChanged();
 
         application.pack();
