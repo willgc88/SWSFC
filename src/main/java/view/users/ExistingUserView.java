@@ -3,6 +3,7 @@ package view.users;
 import users.service.existingUser.interface_adapter.ExistingUserController;
 import users.service.existingUser.interface_adapter.ExistingUserState;
 import users.service.existingUser.interface_adapter.ExistingUserViewModel;
+import view.LabelTextPanel;
 
 import javax.swing.*;
 import java.awt.*;
