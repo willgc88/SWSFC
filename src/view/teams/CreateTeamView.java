@@ -3,6 +3,8 @@ package view.teams;
 import teams.service.createTeam.interface_adapter.CreateTeamController;
 import teams.service.createTeam.interface_adapter.CreateTeamState;
 import teams.service.createTeam.interface_adapter.CreateTeamViewModel;
+import users.service.createUser.interface_adapter.CreateUserViewModel;
+import view.LabelTextPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,10 +17,10 @@ import java.beans.PropertyChangeListener;
 
 public class CreateTeamView extends JPanel implements ActionListener, PropertyChangeListener {
 
-    public final String viewName = "create user";
+    public final String viewName = "create team";
 
     private final CreateTeamViewModel createTeamViewModel;
-    private final JTextField usernameInputField = new JTextField(15);
+    private final JTextField teamNameInputField = new JTextField(15);
     private final CreateTeamController createTeamController;
     private final JButton createTeam;
     public CreateTeamView(CreateTeamController controller, CreateTeamViewModel createTeamViewModel) {
@@ -30,12 +32,15 @@ public class CreateTeamView extends JPanel implements ActionListener, PropertyCh
         JLabel title = new JLabel(CreateTeamViewModel.TITLE_LABEL);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        LabelTextPanel teamNameInfo = new LabelTextPanel(
+                new JLabel(CreateTeamViewModel.TEAMNAME_LABEL), teamNameInputField);
+
+
         JPanel buttons = new JPanel();
         createTeam = new JButton(createTeamViewModel.CREATE_TEAM_BUTTON_LABEL);
         buttons.add(createTeam);
 
         createTeam.addActionListener(
-                // This creates an anonymous subclass of ActionListener and instantiates it.
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(createTeam)) {
@@ -50,15 +55,15 @@ public class CreateTeamView extends JPanel implements ActionListener, PropertyCh
         );
 
         // This makes a new KeyListener implementing class, instantiates it, and
-        // makes it listen to keystrokes in the usernameInputField.
+        // makes it listen to keystrokes in the teamNameInputField.
         //
         // Notice how it has access to instance variables in the enclosing class!
-        usernameInputField.addKeyListener(
+        teamNameInputField.addKeyListener(
                 new KeyListener() {
                     @Override
                     public void keyTyped(KeyEvent e) {
                         CreateTeamState currentState = createTeamViewModel.getState();
-                        String text = usernameInputField.getText() + e.getKeyChar();
+                        String text = teamNameInputField.getText() + e.getKeyChar();
                         currentState.setTeamName(text);
                         createTeamViewModel.setState(currentState);
                     }
@@ -76,6 +81,7 @@ public class CreateTeamView extends JPanel implements ActionListener, PropertyCh
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         this.add(title);
+        this.add(teamNameInfo);
         this.add(buttons);
     }
 
@@ -92,6 +98,6 @@ public class CreateTeamView extends JPanel implements ActionListener, PropertyCh
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        JOptionPane.showConfirmDialog(this, "Cancel not implemented yet.");
     }
 }

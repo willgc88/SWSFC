@@ -1,6 +1,8 @@
 package app;
 
 import data_access.FileUserDataAccessObject;
+import teams.data_access.FileTeamDataAccessObject;
+import teams.entity.TeamFactory;
 import teams.service.createTeam.interface_adapter.CreateTeamViewModel;
 import users.entity.HumanUserFactory;
 import users.service.createUser.interface_adapter.CreateUserViewModel;
@@ -48,14 +50,20 @@ public class Main {
             throw new RuntimeException(e);
         }
 
-        CreateUserView createUserView = CreateUserUseCaseFactory.create(viewManagerModel, createTeamViewModel, createUserViewModel, userDataAccessObject);
+        FileTeamDataAccessObject teamDataAccessObject;
+        try {
+            teamDataAccessObject = new FileTeamDataAccessObject("./users.csv", new TeamFactory());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        CreateUserView createUserView = CreateUserUseCaseFactory.create(viewManagerModel, createUserViewModel, createTeamViewModel, userDataAccessObject);
         views.add(createUserView, createUserView.viewName);
 
-
-        CreateTeamView createTeamView = CreateTeamUseCaseFactory.create(viewManagerModel, draftViewModel, createTeamViewModel, userDataAccessObject);
+        CreateTeamView createTeamView = CreateTeamUseCaseFactory.create(viewManagerModel, draftViewModel, createTeamViewModel, teamDataAccessObject);
         views.add(createTeamView, createTeamView.viewName);
 
-        viewManagerModel.setActiveView(createUserView.viewName);
+        viewManagerModel.setActiveView(startupView.viewName);
         viewManagerModel.firePropertyChanged();
 
         application.pack();

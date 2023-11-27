@@ -22,7 +22,6 @@ public class CreateUserPresenter implements CreateUserOutputBoundary {
     @Override
     public void prepareSuccessView(CreateUserOutputData user) {
         CreateTeamState createTeamState = createTeamViewModel.getState();
-        createTeamState.setTeamName(user.getTeam().getTeamName());
         this.createTeamViewModel.setState(createTeamState);
         this.createTeamViewModel.firePropertyChanged();
 

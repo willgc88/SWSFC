@@ -3,6 +3,7 @@ package view.users;
 import users.service.createUser.interface_adapter.CreateUserController;
 import users.service.createUser.interface_adapter.CreateUserState;
 import users.service.createUser.interface_adapter.CreateUserViewModel;
+import view.LabelTextPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -41,15 +42,11 @@ public class CreateUserView extends JPanel implements ActionListener, PropertyCh
         buttons.add(exit);
 
         createUser.addActionListener(
-                // This creates an anonymous subclass of ActionListener and instantiates it.
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(createUser)) {
                             CreateUserState currentState = createUserViewModel.getState();
-
-                            createUserController.execute(
-                                    currentState.getUsername()
-                            );
+                            createUserController.execute(currentState.getUsername());
                         }
                     }
                 }

@@ -10,6 +10,7 @@ import java.beans.PropertyChangeSupport;
 public class CreateTeamViewModel extends ViewModel {
     public static final String TITLE_LABEL = "Create a new team";
     public static final String CREATE_TEAM_BUTTON_LABEL = "create team";
+    public static final String TEAMNAME_LABEL = "team name";
 
     private CreateTeamState state = new CreateTeamState();
     public CreateTeamViewModel() {
