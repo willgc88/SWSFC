@@ -1,12 +1,15 @@
 package app;
 
 import data_access.FileUserDataAccessObject;
+import teams.data_access.FileTeamDataAccessObject;
+import teams.entity.TeamFactory;
 import teams.service.createTeam.interface_adapter.CreateTeamViewModel;
 import users.entity.HumanUserFactory;
 import users.service.createUser.CreateUserUseCaseFactory;
 import users.service.existingUser.interface_adapter.ExistingUserViewModel;
 import view.startup.*;
 import users.service.createUser.interface_adapter.CreateUserViewModel;
+import view.DraftViewModel;
 import view.ViewManager;
 import view.ViewManagerModel;
 import view.teams.CreateTeamView;
@@ -42,6 +45,7 @@ public class Main {
         StartupViewModel startupViewModel = new StartupViewModel();
         CreateTeamViewModel createTeamViewModel = new CreateTeamViewModel();
         CreateUserViewModel createUserViewModel = new CreateUserViewModel();
+        DraftViewModel draftViewModel = new DraftViewModel();
         ExistingUserViewModel existingUserViewModel = new ExistingUserViewModel();
 
         FileUserDataAccessObject userDataAccessObject;
@@ -51,17 +55,25 @@ public class Main {
             throw new RuntimeException(e);
         }
 
+        FileTeamDataAccessObject teamDataAccessObject;
+        try {
+            teamDataAccessObject = new FileTeamDataAccessObject("./users.csv", new TeamFactory());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         StartupView startupView = StartupUseCaseFactory.create(viewManagerModel, startupViewModel, createUserViewModel, existingUserViewModel);
         views.add(startupView, startupView.viewName);
-
+        CreateUserView createUserView = CreateUserUseCaseFactory.create(viewManagerModel, createUserViewModel, createTeamViewModel, userDataAccessObject);
+        views.add(createUserView, createUserView.viewName);
         // ExistingUserView existingUserView = ExistingUserUseCaseFactory.create();
         // views.add(existingUserView, existingUserView.viewName);
 
-        CreateUserView createUserView = CreateUserUseCaseFactory.create(viewManagerModel, createTeamViewModel, createUserViewModel, userDataAccessObject);
-        views.add(createUserView, createUserView.viewName);
+        CreateTeamView createTeamView = CreateTeamUseCaseFactory.create(viewManagerModel, draftViewModel, createTeamViewModel, teamDataAccessObject);
+        views.add(createTeamView, createTeamView.viewName);
 
-        CreateTeamView createTeamView = new CreateTeamView(createTeamViewModel);
-        // views.add(createTeamView, createTeamView.viewName);
+
+
 
         viewManagerModel.setActiveView(startupView.viewName);
         viewManagerModel.firePropertyChanged();

@@ -19,7 +19,7 @@ import java.io.IOException;
 public class CreateUserUseCaseFactory {
     private CreateUserUseCaseFactory() {}
     public static CreateUserView create(
-            ViewManagerModel viewManagerModel, CreateTeamViewModel createTeamViewModel, CreateUserViewModel createUserViewModel, CreateUserDataAccessInterface createUserDataAccessObject) {
+            ViewManagerModel viewManagerModel, CreateUserViewModel createUserViewModel, CreateTeamViewModel createTeamViewModel, CreateUserDataAccessInterface createUserDataAccessObject) {
 
         try {
             CreateUserController createUserController = createUserUseCase(viewManagerModel, createUserViewModel, createTeamViewModel, createUserDataAccessObject);

@@ -1,7 +1,6 @@
 package users.service.createUser.interface_adapter;
 
 import view.ViewModel;
-import users.service.createUser.interface_adapter.CreateUserState;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;

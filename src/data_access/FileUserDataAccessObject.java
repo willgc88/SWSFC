@@ -1,12 +1,8 @@
 package data_access;
-
 import users.entity.User;
 import users.entity.UserFactory;
 import users.service.createUser.CreateUserDataAccessInterface;
-
 import java.io.*;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -62,7 +58,8 @@ public class FileUserDataAccessObject implements CreateUserDataAccessInterface {
             writer.newLine();
 
             for (User user : accounts.values()) {
-                writer.write(user.getName());
+                String line = user.getName();
+                writer.write(line);
                 writer.newLine();
             }
 
@@ -84,4 +81,5 @@ public class FileUserDataAccessObject implements CreateUserDataAccessInterface {
     public boolean existsByName(String identifier) {
         return accounts.containsKey(identifier);
     }
+
 }
