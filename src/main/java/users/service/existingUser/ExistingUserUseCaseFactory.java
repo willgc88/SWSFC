@@ -4,6 +4,7 @@ import teams.service.createTeam.interface_adapter.CreateTeamViewModel;
 import users.service.existingUser.interface_adapter.ExistingUserController;
 import users.service.existingUser.interface_adapter.ExistingUserPresenter;
 import users.service.existingUser.interface_adapter.ExistingUserViewModel;
+import users.service.loggedIn.interface_adapter.LoggedInViewModel;
 import view.ViewManagerModel;
 import view.users.ExistingUserView;
 
@@ -28,7 +29,7 @@ public class ExistingUserUseCaseFactory {
     private static ExistingUserController existingUserUseCase(ViewManagerModel viewManagerModel, ExistingUserViewModel existingUserViewModel, CreateTeamViewModel createTeamViewModel, ExistingUserDataAccessInterface existingUserDataAccessObject) throws IOException {
 
         // Notice how we pass this method's parameters to the Presenter.
-        ExistingUserOutputBoundary existingUserOutputBoundary = new ExistingUserPresenter(viewManagerModel, createTeamViewModel, existingUserViewModel);
+        ExistingUserOutputBoundary existingUserOutputBoundary = new ExistingUserPresenter(viewManagerModel, new LoggedInViewModel(), existingUserViewModel);
 
         ExistingUserInputBoundary existingUserInteractor = new ExistingUserInteractor(
                 existingUserDataAccessObject, existingUserOutputBoundary);
