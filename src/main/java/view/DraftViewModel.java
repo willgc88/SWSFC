@@ -20,5 +20,7 @@ public class DraftViewModel extends ViewModel {
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
     }
-    public DraftState getState() { return state; }
+    public DraftState getState() {
+        return state;
+    }
 }

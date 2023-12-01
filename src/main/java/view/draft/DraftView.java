@@ -21,7 +21,7 @@ public class DraftView extends JPanel implements ActionListener, PropertyChangeL
         this.draftViewModel = draftViewModel;
         draftViewModel.addPropertyChangeListener(this);
 
-        JLabel title = new JLabel(DraftViewModel.TITLE_LABEL);
+        JLabel title = new JLabel("Draft Selector");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         
         int buttonWidth = 200;
@@ -63,6 +63,44 @@ public class DraftView extends JPanel implements ActionListener, PropertyChangeL
         defenders.add(p9);
         defenders.add(p10);
         keeper.add(p11);
+
+        p1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource().equals(p1)) {
+                    String[] options = {"messi","ronaldo","nursultan","will","shayan"};
+                    int selection = JOptionPane.showOptionDialog(null,
+                            "Select a Striker:",
+                            "Player Selection",
+                            0, 3,
+                            null,
+                            options,
+                            options[0]
+                    );
+                    draftController.execute(1, selection);
+                }
+            }
+        });
+
+        p2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource().equals(p2)) {
+                    String[] options = {"messi","ronaldo","nursultan","will","shayan"};
+                    int selection = JOptionPane.showOptionDialog(null,
+                            "Select a Striker:",
+                            "Player Selection",
+                            0, 3,
+                            null,
+                            options,
+                            options[0]
+                    );
+                    draftController.execute(2, selection);
+                }
+            }
+        });
+
+
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 

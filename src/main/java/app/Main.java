@@ -76,7 +76,7 @@ public class Main {
         CreateTeamView createTeamView = CreateTeamUseCaseFactory.create(viewManagerModel, draftViewModel, createTeamViewModel, teamDataAccessObject);
         views.add(createTeamView, createTeamView.viewName);
 
-        DraftView draftView = new DraftView(new DraftController(), new DraftViewModel());
+        DraftView draftView = CreateDraftUseCaseFactory.create(viewManagerModel, draftViewModel);
         views.add(draftView, draftView.viewName);
 
         viewManagerModel.setActiveView(draftView.viewName);
