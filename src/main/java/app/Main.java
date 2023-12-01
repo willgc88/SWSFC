@@ -6,6 +6,8 @@ import teams.entity.TeamFactory;
 import teams.service.createTeam.interface_adapter.CreateTeamViewModel;
 import users.entity.HumanUserFactory;
 import users.service.createUser.CreateUserUseCaseFactory;
+import users.service.existingUser.ExistingUserDataAccessInterface;
+import users.service.existingUser.ExistingUserUseCaseFactory;
 import users.service.existingUser.interface_adapter.ExistingUserViewModel;
 import view.startup.*;
 import users.service.createUser.interface_adapter.CreateUserViewModel;
@@ -14,6 +16,7 @@ import view.ViewManager;
 import view.ViewManagerModel;
 import view.teams.CreateTeamView;
 import view.users.CreateUserView;
+import view.users.ExistingUserView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -66,8 +69,8 @@ public class Main {
         views.add(startupView, startupView.viewName);
         CreateUserView createUserView = CreateUserUseCaseFactory.create(viewManagerModel, createUserViewModel, createTeamViewModel, userDataAccessObject);
         views.add(createUserView, createUserView.viewName);
-        // ExistingUserView existingUserView = ExistingUserUseCaseFactory.create();
-        // views.add(existingUserView, existingUserView.viewName);
+        /*ExistingUserView existingUserView = ExistingUserUseCaseFactory.create(viewManagerModel, createTeamViewModel, existingUserViewModel, userDataAccessObject);
+        views.add(existingUserView, existingUserView.viewName);*/
 
         CreateTeamView createTeamView = CreateTeamUseCaseFactory.create(viewManagerModel, draftViewModel, createTeamViewModel, teamDataAccessObject);
         views.add(createTeamView, createTeamView.viewName);

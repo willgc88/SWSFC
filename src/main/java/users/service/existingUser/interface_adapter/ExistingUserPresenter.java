@@ -1,6 +1,7 @@
 package users.service.existingUser.interface_adapter;
 
-import users.service.existingUser.ExistingUserInputBoundary;
+import teams.service.createTeam.interface_adapter.CreateTeamState;
+import teams.service.createTeam.interface_adapter.CreateTeamViewModel;
 import users.service.existingUser.ExistingUserOutputBoundary;
 import users.service.existingUser.ExistingUserOutputData;
 import users.service.loggedIn.interface_adapter.LoggedInState;
@@ -10,14 +11,14 @@ import view.ViewManagerModel;
 public class ExistingUserPresenter implements ExistingUserOutputBoundary {
 
     private final ExistingUserViewModel existingUserViewModel;
-    private final LoggedInViewModel loggedInViewModel;
+    private final CreateTeamViewModel createTeamViewModel;
     private ViewManagerModel viewManagerModel;
 
     public ExistingUserPresenter(ViewManagerModel viewManagerModel,
-                                 LoggedInViewModel loggedInViewModel,
+                                 CreateTeamViewModel createTeamViewModel,
                                  ExistingUserViewModel existingUserViewModel) {
         this.viewManagerModel = viewManagerModel;
-        this.loggedInViewModel = loggedInViewModel;
+        this.createTeamViewModel = createTeamViewModel;
         this.existingUserViewModel = existingUserViewModel;
     }
 
@@ -25,12 +26,11 @@ public class ExistingUserPresenter implements ExistingUserOutputBoundary {
     public void prepareSuccessView(ExistingUserOutputData response) {
         // On success, switch to the logged in view.
 
-        LoggedInState loggedInState = loggedInViewModel.getState();
-        loggedInState.setUsername(response.getUsername());
-        this.loggedInViewModel.setState(loggedInState);
-        this.loggedInViewModel.firePropertyChanged();
-
-        this.viewManagerModel.setActiveView(loggedInViewModel.getViewName());
+        CreateTeamState createTeamState = createTeamViewModel.getState();
+        createTeamState.setTeamName(response.getTeamName());
+        this.createTeamViewModel.setState(createTeamState);
+        this.createTeamViewModel.firePropertyChanged();
+        this.viewManagerModel.setActiveView(createTeamViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
     }
 
