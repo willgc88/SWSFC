@@ -28,8 +28,6 @@ public class ExistingUserUseCaseFactory {
     }
 
     private static ExistingUserController existingUserUseCase(ViewManagerModel viewManagerModel, ExistingUserViewModel existingUserViewModel, CreateTeamViewModel createTeamViewModel, ExistingUserDataAccessInterface existingUserDataAccessObject) throws IOException {
-
-        // Notice how we pass this method's parameters to the Presenter.
         ExistingUserOutputBoundary existingUserOutputBoundary = new ExistingUserPresenter(viewManagerModel, createTeamViewModel, existingUserViewModel);
 
         UserFactory userFactory = new HumanUserFactory();
@@ -38,5 +36,6 @@ public class ExistingUserUseCaseFactory {
                 existingUserDataAccessObject, existingUserOutputBoundary);
 
         return new ExistingUserController(existingUserInteractor);
+
     }
 }

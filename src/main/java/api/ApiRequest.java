@@ -8,10 +8,9 @@ import java.util.Random;
 public class ApiRequest {
     public static void main(String[] args) {
         OkHttpClient client = new OkHttpClient();
-        Integer playerID = new Random().nextInt(1000);
 
         Request request = new Request.Builder()
-                .url("https://api-football-v1.p.rapidapi.com/v3/players?id=276&season=2023")
+                .url("https://api-football-v1.p.rapidapi.com/v3/players?id=257&season=2023")
                 .get()
                 .addHeader("X-RapidAPI-Key", "168092cdc6msh053297dfb2b0373p1b37abjsnf5ab4ec25b34")
                 .addHeader("X-RapidAPI-Host", "api-football-v1.p.rapidapi.com")

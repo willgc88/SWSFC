@@ -2,6 +2,9 @@ package users.service.existingUser.interface_adapter;
 
 import teams.service.createTeam.interface_adapter.CreateTeamState;
 import teams.service.createTeam.interface_adapter.CreateTeamViewModel;
+
+import users.service.existingUser.ExistingUserInputBoundary;
+
 import users.service.existingUser.ExistingUserOutputBoundary;
 import users.service.existingUser.ExistingUserOutputData;
 import view.ViewManagerModel;
@@ -10,7 +13,8 @@ public class ExistingUserPresenter implements ExistingUserOutputBoundary {
 
     private final ExistingUserViewModel existingUserViewModel;
     private final CreateTeamViewModel createTeamViewModel;
-    private ViewManagerModel viewManagerModel;
+
+    private final ViewManagerModel viewManagerModel;
 
     public ExistingUserPresenter(ViewManagerModel viewManagerModel,
                                  CreateTeamViewModel createTeamViewModel,
@@ -22,12 +26,12 @@ public class ExistingUserPresenter implements ExistingUserOutputBoundary {
 
     @Override
     public void prepareSuccessView(ExistingUserOutputData response) {
-        // On success, switch to the logged in view.
 
         CreateTeamState createTeamState = createTeamViewModel.getState();
         createTeamState.setTeamName(response.getTeamName());
         this.createTeamViewModel.setState(createTeamState);
         this.createTeamViewModel.firePropertyChanged();
+
         this.viewManagerModel.setActiveView(createTeamViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
     }
