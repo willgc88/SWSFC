@@ -4,8 +4,6 @@ import teams.service.createTeam.interface_adapter.CreateTeamState;
 import teams.service.createTeam.interface_adapter.CreateTeamViewModel;
 import users.service.existingUser.ExistingUserOutputBoundary;
 import users.service.existingUser.ExistingUserOutputData;
-import users.service.loggedIn.interface_adapter.LoggedInState;
-import users.service.loggedIn.interface_adapter.LoggedInViewModel;
 import view.ViewManagerModel;
 
 public class ExistingUserPresenter implements ExistingUserOutputBoundary {

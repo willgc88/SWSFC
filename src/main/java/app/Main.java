@@ -67,10 +67,12 @@ public class Main {
 
         StartupView startupView = StartupUseCaseFactory.create(viewManagerModel, startupViewModel, createUserViewModel, existingUserViewModel);
         views.add(startupView, startupView.viewName);
+
         CreateUserView createUserView = CreateUserUseCaseFactory.create(viewManagerModel, createUserViewModel, createTeamViewModel, userDataAccessObject);
         views.add(createUserView, createUserView.viewName);
-        /*ExistingUserView existingUserView = ExistingUserUseCaseFactory.create(viewManagerModel, createTeamViewModel, existingUserViewModel, userDataAccessObject);
-        views.add(existingUserView, existingUserView.viewName);*/
+
+        ExistingUserView existingUserView = ExistingUserUseCaseFactory.create(viewManagerModel, existingUserViewModel, createTeamViewModel, userDataAccessObject);
+        views.add(existingUserView, existingUserView.viewName);
 
         CreateTeamView createTeamView = CreateTeamUseCaseFactory.create(viewManagerModel, draftViewModel, createTeamViewModel, teamDataAccessObject);
         views.add(createTeamView, createTeamView.viewName);
