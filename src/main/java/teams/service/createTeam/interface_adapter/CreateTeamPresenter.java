@@ -1,5 +1,6 @@
 package teams.service.createTeam.interface_adapter;
 
+import draft.DraftState;
 import teams.service.createTeam.CreateTeamOutputBoundary;
 import teams.service.createTeam.CreateTeamOutputData;
 import users.service.createUser.interface_adapter.CreateUserState;
@@ -19,12 +20,12 @@ public class CreateTeamPresenter implements CreateTeamOutputBoundary {
 
     @Override
     public void prepareSuccessView(CreateTeamOutputData team) {
-        /*DraftState draftState = draftViewModel.getState();
-        draftState.setTeam(response.getTeam());
+        DraftState draftState = draftViewModel.getState();
+        //draftState.setTeam(response.getTeam());
         this.draftViewModel.setState(draftState);
         this.draftViewModel.firePropertyChanged();
 
-        this.draftViewModel.setActiveView(draftViewModel.getViewName());*/
+        this.viewManagerModel.setActiveView(draftViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
 
     }
