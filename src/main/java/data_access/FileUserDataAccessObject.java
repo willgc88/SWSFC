@@ -2,12 +2,14 @@ package data_access;
 import users.entity.User;
 import users.entity.UserFactory;
 import users.service.createUser.CreateUserDataAccessInterface;
+import users.service.existingUser.ExistingUserDataAccessInterface;
+
 import java.io.*;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class FileUserDataAccessObject implements CreateUserDataAccessInterface {
+public class FileUserDataAccessObject implements CreateUserDataAccessInterface , ExistingUserDataAccessInterface {
 
     private final File csvFile;
 
@@ -48,6 +50,11 @@ public class FileUserDataAccessObject implements CreateUserDataAccessInterface {
     public void save(User user) {
         accounts.put(user.getName(), user);
         this.save();
+    }
+
+    @Override
+    public User get(String identifier) {
+        return accounts.get(identifier);
     }
 
     private void save() {

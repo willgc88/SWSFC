@@ -1,6 +1,8 @@
 package users.service.existingUser;
 
 import teams.service.createTeam.interface_adapter.CreateTeamViewModel;
+import users.entity.HumanUserFactory;
+import users.entity.UserFactory;
 import users.service.existingUser.interface_adapter.ExistingUserController;
 import users.service.existingUser.interface_adapter.ExistingUserPresenter;
 import users.service.existingUser.interface_adapter.ExistingUserViewModel;
@@ -13,10 +15,10 @@ import java.io.IOException;
 public class ExistingUserUseCaseFactory {
     private ExistingUserUseCaseFactory() {}
     public static ExistingUserView create(
-            ViewManagerModel viewManagerModel, CreateTeamViewModel createTeamViewModel, ExistingUserViewModel existingUserViewModel, ExistingUserDataAccessInterface existingUserDataAccessObject) {
+            ViewManagerModel viewManagerModel,ExistingUserViewModel existingUserViewModel, CreateTeamViewModel createTeamViewModel, ExistingUserDataAccessInterface userDataAccessObject) {
 
         try {
-            ExistingUserController existingUserController = existingUserUseCase(viewManagerModel, existingUserViewModel, createTeamViewModel, existingUserDataAccessObject);
+            ExistingUserController existingUserController = existingUserUseCase(viewManagerModel, existingUserViewModel, createTeamViewModel, userDataAccessObject);
             return new ExistingUserView(existingUserViewModel, existingUserController);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Could not find user");
@@ -26,14 +28,14 @@ public class ExistingUserUseCaseFactory {
     }
 
     private static ExistingUserController existingUserUseCase(ViewManagerModel viewManagerModel, ExistingUserViewModel existingUserViewModel, CreateTeamViewModel createTeamViewModel, ExistingUserDataAccessInterface existingUserDataAccessObject) throws IOException {
+        ExistingUserOutputBoundary existingUserOutputBoundary = new ExistingUserPresenter(viewManagerModel, createTeamViewModel, existingUserViewModel);
 
-//        // Notice how we pass this method's parameters to the Presenter.
-//        ExistingUserOutputBoundary existingUserOutputBoundary = new ExistingUserPresenter(viewManagerModel, createTeamViewModel, existingUserViewModel);
-//
-//        ExistingUserInputBoundary existingUserInteractor = new ExistingUserInteractor(
-//                existingUserDataAccessObject, existingUserOutputBoundary);
-//
-//        return new ExistingUserController(existingUserInteractor);
-        return null;
+        UserFactory userFactory = new HumanUserFactory();
+
+        ExistingUserInputBoundary existingUserInteractor = new ExistingUserInteractor(
+                existingUserDataAccessObject, existingUserOutputBoundary);
+
+        return new ExistingUserController(existingUserInteractor);
+
     }
 }
