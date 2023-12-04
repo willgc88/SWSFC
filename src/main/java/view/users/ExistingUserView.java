@@ -16,7 +16,7 @@ import java.beans.PropertyChangeListener;
 
 public class ExistingUserView extends JPanel implements ActionListener, PropertyChangeListener {
 
-    public final String viewName = "existing user";
+    public final String viewName = "log in";
     private final ExistingUserViewModel existingUserViewModel;
 
     final JTextField usernameInputField = new JTextField(15);
@@ -30,9 +30,9 @@ public class ExistingUserView extends JPanel implements ActionListener, Property
 
         this.existingUserController = controller;
         this.existingUserViewModel = existingUserViewModel;
-        existingUserViewModel.addPropertyChangeListener(this);
+        this.existingUserViewModel.addPropertyChangeListener(this);
 
-        JLabel title = new JLabel("Existing User");
+        JLabel title = new JLabel("Login Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         LabelTextPanel usernameInfo = new LabelTextPanel(
@@ -50,7 +50,8 @@ public class ExistingUserView extends JPanel implements ActionListener, Property
                         if (evt.getSource().equals(existingUser)) {
                             ExistingUserState currentState = existingUserViewModel.getState();
 
-                            existingUserController.execute(currentState.getUsername()
+                            existingUserController.execute(
+                                    currentState.getUsername()
                             );
                         }
                     }

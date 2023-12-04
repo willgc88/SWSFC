@@ -19,37 +19,11 @@ public class Player {
         this.age = age;
         this.playerID = playerID;
     }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public String getNation() {
-        return nation;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public Team getTeam() {
-        return team;
-    }
-
-    public int getPlayerID() {
-        return playerID;
-    }
-
-    public PlayerStats getPlayerStats() {
-        return playerStats;
-    }
-
-    public String getClub() {
-        return club;
-    }
-
+    public String getFirstname() {return firstname;}
+    public String getLastname() {return lastname;}
+    public String getNation() {return nation;}
+    public int getAge() {return age;}
+    public Team getTeam() {return team;}
+    public int getPlayerID() {return playerID;}
+    public PlayerStats getPlayerStats() {return playerStats;}
 }
