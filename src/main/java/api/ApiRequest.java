@@ -3,12 +3,10 @@ package api;
 import okhttp3.*;
 
 import java.io.IOException;
-import java.util.Random;
 
 public class ApiRequest {
     public static void main(String[] args) {
         OkHttpClient client = new OkHttpClient();
-
         Request request = new Request.Builder()
                 .url("https://api-football-v1.p.rapidapi.com/v3/players?id=257&season=2023")
                 .get()

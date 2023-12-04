@@ -2,18 +2,17 @@ package users.service.existingUser.interface_adapter;
 
 import teams.service.createTeam.interface_adapter.CreateTeamState;
 import teams.service.createTeam.interface_adapter.CreateTeamViewModel;
-
 import users.service.existingUser.ExistingUserInputBoundary;
-
 import users.service.existingUser.ExistingUserOutputBoundary;
 import users.service.existingUser.ExistingUserOutputData;
+import users.service.loggedIn.interface_adapter.LoggedInState;
+import users.service.loggedIn.interface_adapter.LoggedInViewModel;
 import view.ViewManagerModel;
 
 public class ExistingUserPresenter implements ExistingUserOutputBoundary {
 
     private final ExistingUserViewModel existingUserViewModel;
     private final CreateTeamViewModel createTeamViewModel;
-
     private final ViewManagerModel viewManagerModel;
 
     public ExistingUserPresenter(ViewManagerModel viewManagerModel,
@@ -27,8 +26,8 @@ public class ExistingUserPresenter implements ExistingUserOutputBoundary {
     @Override
     public void prepareSuccessView(ExistingUserOutputData response) {
 
+
         CreateTeamState createTeamState = createTeamViewModel.getState();
-        createTeamState.setTeamName(response.getTeamName());
         this.createTeamViewModel.setState(createTeamState);
         this.createTeamViewModel.firePropertyChanged();
 
