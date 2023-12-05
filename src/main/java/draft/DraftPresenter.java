@@ -14,7 +14,7 @@ public class DraftPresenter implements DraftOutputBoundary {
 
     @Override
     public void prepareSuccessView(DraftOutputData data) {
-
+        //switch to team info view
     }
 
     @Override

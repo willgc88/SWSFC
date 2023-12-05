@@ -1,7 +1,6 @@
 package view;
 
 import draft.DraftState;
-import view.startup.StartupState;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;

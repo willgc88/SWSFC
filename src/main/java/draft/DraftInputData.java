@@ -8,4 +8,12 @@ public class DraftInputData {
         this.position = position;
         this.selection = selection;
     }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public int getSelection() {
+        return selection;
+    }
 }
