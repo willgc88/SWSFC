@@ -6,39 +6,40 @@ import org.json.JSONObject;
 import teams.entity.Player;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.*;
 
 
 public class ApiRequest {
     public static void main(String[] args) {
-        String response = apiRequest();
-        System.out.println(response);
-        List<Player> defenders = extractPlayersByPosition(response, "Defender");
-        for (Player defender : defenders) {
-            System.out.println(defender.getName() + " ," + defender.getPosition() + " ," + defender.getClub() );
+        System.out.println(apiRequest());
+    }
+
+    public static Map<String, List<Player>> apiRequest() {
+        Random random = new Random();
+        int[] teamsID = {34, 33, 42, 50, 571, 85, 116, 157, 165, 173, 182, 489, 505, 492, 487, 209, 211, 212, 247, 598, 529, 530, 536, 541, 550};
+        String[] teams = new String[5];
+
+        Set<Integer> usedIndices = new HashSet<>();
+
+        for (int i = 0; i < teams.length; i++) {
+            int x;
+            do {
+                x = random.nextInt(teamsID.length);
+            } while (usedIndices.contains(x));
+
+            teams[i] = String.format("https://api-football-v1.p.rapidapi.com/v3/players/squads?team=%d", teamsID[x]);
+            usedIndices.add(x);
         }
 
+        // teams array contains unique URLs
+        Map<String, List<Player>> result = new HashMap<>();
+        for (String url : teams) {
+            mergeValues(result, makeAPIRequest(url));
+        }
+        return result;
     }
 
-    public static String apiRequest() {
-        Random random = new Random();
-        int [] teamsID = {50,33,47,42,40,529,530,541,9568,157, 165, 489,492,496, 505, 49, 85, 91};
-        String [] teams = new String [5];
-
-            for (int i = 0; i < teams.length; i++) {
-                int x = random.nextInt(teamsID.length);
-                teams[i] = String.format("https://api-football-v1.p.rapidapi.com/v3/players/squads?team=%d", teamsID[x]);
-            }
-
-            return  makeAPIRequest(teams[0]);
-    }
-
-    public static String makeAPIRequest(String url) {
+    public static Map<String, List<Player>> makeAPIRequest(String url) {
         OkHttpClient client = new OkHttpClient();
         String responseBody;
         Request request = new Request.Builder()
@@ -53,7 +54,13 @@ public class ApiRequest {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return responseBody;
+        Map<String, List<Player>> teamMap = new HashMap<>();
+        teamMap.put("Goalkeeper", extractPlayersByPosition(responseBody, "Goalkeeper"));
+        teamMap.put("Defender", extractPlayersByPosition(responseBody, "Defender"));
+        teamMap.put("Midfielder", extractPlayersByPosition(responseBody, "Midfielder"));
+        teamMap.put("Attacker", extractPlayersByPosition(responseBody, "Attacker"));
+
+        return teamMap;
     }
     private static List<Player> extractPlayersByPosition(String jsonResponse, String position) {
         List<Player> defenders = new ArrayList<>();
@@ -79,5 +86,12 @@ public class ApiRequest {
         }
 
         return defenders;
+    }
+    private static void mergeValues(Map<String, List<Player>> result, Map<String, List<Player>> map) {
+        for (Map.Entry<String, List<Player>> entry : map.entrySet()) {
+            String key = entry.getKey();
+            List<Player> values = entry.getValue();
+            result.computeIfAbsent(key, k -> new ArrayList<>()).addAll(values);
+        }
     }
 }
