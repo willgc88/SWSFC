@@ -7,7 +7,7 @@ public class DraftInteractor implements DraftInputBoundary {
     }
     @Override
     public void execute(DraftInputData draftInputData) {
-        DraftOutputData data = new DraftOutputData(draftInputData.getPosition(), "messi");
+        DraftOutputData data = new DraftOutputData(draftInputData.getPlayers());
         draftPresenter.prepareSuccessView(data);
     }
 }

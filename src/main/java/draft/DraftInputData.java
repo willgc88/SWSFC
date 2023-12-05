@@ -1,19 +1,14 @@
 package draft;
 
+import teams.entity.Player;
+
 public class DraftInputData {
-    int position;
-    int selection;
-
-    public DraftInputData(int position, int selection) {
-        this.position = position;
-        this.selection = selection;
+    Player[] players;
+    public DraftInputData(Player[] players) {
+        this.players = players;
     }
 
-    public int getPosition() {
-        return position;
-    }
-
-    public int getSelection() {
-        return selection;
+    public Player[] getPlayers() {
+        return players;
     }
 }

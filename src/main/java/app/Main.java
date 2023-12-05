@@ -81,7 +81,7 @@ public class Main {
         DraftView draftView = CreateDraftUseCaseFactory.create(viewManagerModel, draftViewModel);
         views.add(draftView, draftView.viewName);
 
-        viewManagerModel.setActiveView(startupView.viewName);
+        viewManagerModel.setActiveView(draftView.viewName);
         viewManagerModel.firePropertyChanged();
 
         application.pack();

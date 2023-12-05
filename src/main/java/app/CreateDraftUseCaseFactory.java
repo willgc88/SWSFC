@@ -1,5 +1,6 @@
 package app;
 
+import api.ApiRequest;
 import draft.*;
 import teams.entity.TeamFactory;
 import teams.service.createTeam.CreateTeamDataAccessInterface;
@@ -23,7 +24,7 @@ public class CreateDraftUseCaseFactory {
             ViewManagerModel viewManagerModel, DraftViewModel draftViewModel){
         try {
             DraftController draftController = createDraftUseCase(viewManagerModel, draftViewModel);
-
+            draftViewModel.getState().setRandomPlayers(ApiRequest.apiRequest());
             return new DraftView(draftController, draftViewModel);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Could not access data");
