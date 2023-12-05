@@ -13,10 +13,10 @@ import java.io.IOException;
 public class ExistingUserUseCaseFactory {
     private ExistingUserUseCaseFactory() {}
     public static ExistingUserView create(
-            ViewManagerModel viewManagerModel, CreateTeamViewModel createTeamViewModel, ExistingUserViewModel existingUserViewModel, ExistingUserDataAccessInterface existingUserDataAccessObject) {
+            ViewManagerModel viewManagerModel,ExistingUserViewModel existingUserViewModel, CreateTeamViewModel createTeamViewModel, ExistingUserDataAccessInterface userDataAccessObject) {
 
         try {
-            ExistingUserController existingUserController = existingUserUseCase(viewManagerModel, existingUserViewModel, createTeamViewModel, existingUserDataAccessObject);
+            ExistingUserController existingUserController = existingUserUseCase(viewManagerModel, existingUserViewModel, createTeamViewModel, userDataAccessObject);
             return new ExistingUserView(existingUserViewModel, existingUserController);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Could not find user");
@@ -27,13 +27,11 @@ public class ExistingUserUseCaseFactory {
 
     private static ExistingUserController existingUserUseCase(ViewManagerModel viewManagerModel, ExistingUserViewModel existingUserViewModel, CreateTeamViewModel createTeamViewModel, ExistingUserDataAccessInterface existingUserDataAccessObject) throws IOException {
 
-//        // Notice how we pass this method's parameters to the Presenter.
-//        ExistingUserOutputBoundary existingUserOutputBoundary = new ExistingUserPresenter(viewManagerModel, createTeamViewModel, existingUserViewModel);
-//
-//        ExistingUserInputBoundary existingUserInteractor = new ExistingUserInteractor(
-//                existingUserDataAccessObject, existingUserOutputBoundary);
-//
-//        return new ExistingUserController(existingUserInteractor);
-        return null;
+        ExistingUserOutputBoundary existingUserOutputBoundary = new ExistingUserPresenter(viewManagerModel, createTeamViewModel, existingUserViewModel);
+
+        ExistingUserInputBoundary existingUserInteractor = new ExistingUserInteractor(
+                existingUserDataAccessObject, existingUserOutputBoundary);
+
+        return new ExistingUserController(existingUserInteractor);
     }
 }

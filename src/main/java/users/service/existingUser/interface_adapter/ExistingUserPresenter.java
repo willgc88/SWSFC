@@ -13,7 +13,7 @@ public class ExistingUserPresenter implements ExistingUserOutputBoundary {
 
     private final ExistingUserViewModel existingUserViewModel;
     private final CreateTeamViewModel createTeamViewModel;
-    private final ViewManagerModel viewManagerModel;
+    private ViewManagerModel viewManagerModel;
 
     public ExistingUserPresenter(ViewManagerModel viewManagerModel,
                                  CreateTeamViewModel createTeamViewModel,
@@ -25,9 +25,10 @@ public class ExistingUserPresenter implements ExistingUserOutputBoundary {
 
     @Override
     public void prepareSuccessView(ExistingUserOutputData response) {
-
+        // On success, switch to the logged in view.
 
         CreateTeamState createTeamState = createTeamViewModel.getState();
+        createTeamState.setTeamName(response.getTeamName());
         this.createTeamViewModel.setState(createTeamState);
         this.createTeamViewModel.firePropertyChanged();
 
