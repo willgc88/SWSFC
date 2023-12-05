@@ -1,6 +1,7 @@
 package view.draft;
 
 import draft.DraftController;
+import draft.DraftState;
 import view.DraftViewModel;
 
 import javax.swing.*;
@@ -15,6 +16,7 @@ public class DraftView extends JPanel implements ActionListener, PropertyChangeL
     public final String viewName = "draft";
     private final DraftViewModel draftViewModel;
     private final DraftController draftController;
+    private JLabel title;
     private final JComboBox<String> p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11;
     private final JButton confirm;
 
@@ -23,7 +25,7 @@ public class DraftView extends JPanel implements ActionListener, PropertyChangeL
         this.draftViewModel = draftViewModel;
         draftViewModel.addPropertyChangeListener(this);
 
-        JLabel title = new JLabel("Player Draft for " + this.draftViewModel.getState().getTeamName());
+        title = new JLabel("Player Draft for " + this.draftViewModel.getState().getTeamName());
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         int buttonWidth = 200;
@@ -103,6 +105,7 @@ public class DraftView extends JPanel implements ActionListener, PropertyChangeL
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-
+        DraftState state = (DraftState) evt.getNewValue();
+        title.setText("Player Draft for " + state.getTeamName());
     }
 }

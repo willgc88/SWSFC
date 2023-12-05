@@ -23,10 +23,9 @@ public class CreateTeamPresenter implements CreateTeamOutputBoundary {
         DraftState draftState = this.draftViewModel.getState();
         draftState.setTeamName(team.getTeamName());
         this.draftViewModel.setState(draftState);
-        this.draftViewModel.firePropertyChanged();
-
-        this.viewManagerModel.setActiveView(this.draftViewModel.getViewName());
-        this.viewManagerModel.firePropertyChanged();
+        draftViewModel.firePropertyChanged();
+        viewManagerModel.setActiveView(draftViewModel.getViewName());
+        viewManagerModel.firePropertyChanged();
     }
 
     @Override
