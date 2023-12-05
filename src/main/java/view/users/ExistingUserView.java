@@ -32,7 +32,7 @@ public class ExistingUserView extends JPanel implements ActionListener, Property
         this.existingUserViewModel = existingUserViewModel;
         existingUserViewModel.addPropertyChangeListener(this);
 
-        JLabel title = new JLabel("Existing User");
+        JLabel title = new JLabel("Log in");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         LabelTextPanel usernameInfo = new LabelTextPanel(
@@ -49,9 +49,7 @@ public class ExistingUserView extends JPanel implements ActionListener, Property
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(existingUser)) {
                             ExistingUserState currentState = existingUserViewModel.getState();
-
-                            existingUserController.execute(currentState.getUsername()
-                            );
+                            existingUserController.execute(currentState.getUsername());
                         }
                     }
                 }
@@ -84,9 +82,6 @@ public class ExistingUserView extends JPanel implements ActionListener, Property
         this.add(buttons);
     }
 
-    /**
-     * React to a button click that results in evt.
-     */
     public void actionPerformed(ActionEvent evt) {
         System.out.println("Click " + evt.getActionCommand());
     }

@@ -46,7 +46,9 @@ public class DraftView extends JPanel implements ActionListener, PropertyChangeL
             attackerNames[i] = attackersList.get(i).getName();
             midfielderNames[i] = midfieldersList.get(i).getName();
             defenderNames[i] = defendersList.get(i).getName();
-            goalkeeperNames[i] = goalkeepersList.get(i).getName();
+            if(i < 5) {
+                goalkeeperNames[i] = goalkeepersList.get(i).getName();
+            }
         }
 
         title = new JLabel("Player Draft");
@@ -141,7 +143,7 @@ public class DraftView extends JPanel implements ActionListener, PropertyChangeL
         String p10Selection = (String)p10.getSelectedItem();
         playerList[9] = attackersList.get(List.of(defenderNames).indexOf(p10Selection));
         String p11Selection = (String)p11.getSelectedItem();
-        playerList[10] = attackersList.get(List.of(goalkeeperNames).indexOf(p11Selection));
+        playerList[10] = goalkeepersList.get(List.of(goalkeeperNames).indexOf(p11Selection));
 
         if (e.getSource().equals(confirm)) {
            draftController.execute(playerList);

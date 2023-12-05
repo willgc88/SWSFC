@@ -1,16 +1,16 @@
 package users.service.existingUser;
 
 public class ExistingUserOutputData {
-    private final String teamName;
+    private final String username;
     private boolean useCaseFailed;
 
-    public ExistingUserOutputData(String teamName, boolean useCaseFailed) {
-        this.teamName = teamName;
+    public ExistingUserOutputData(String username, boolean useCaseFailed) {
+        this.username = username;
         this.useCaseFailed = useCaseFailed;
     }
 
-    public String getTeamName() {
-        return teamName;
+    public String getUsername() {
+        return username;
     }
 
 }

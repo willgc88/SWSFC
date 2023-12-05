@@ -11,8 +11,7 @@ public class ExistingUserController {
 
 
     public void execute(String username) {
-        ExistingUserInputData existingUserInputData = new ExistingUserInputData(
-                username);
+        ExistingUserInputData existingUserInputData = new ExistingUserInputData(username);
 
         existingUserUseCaseInteractor.execute(existingUserInputData);
     }

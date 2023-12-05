@@ -9,8 +9,8 @@ import java.beans.PropertyChangeSupport;
 
 public class CreateTeamViewModel extends ViewModel {
     public static final String TITLE_LABEL = "Create a new team";
-    public static final String CREATE_TEAM_BUTTON_LABEL = "create team";
-    public static final String TEAMNAME_LABEL = "team name";
+    public static final String CREATE_TEAM_BUTTON_LABEL = "Create team";
+    public static final String TEAMNAME_LABEL = "Team name";
 
     private CreateTeamState state = new CreateTeamState();
     public CreateTeamViewModel() {
@@ -30,9 +30,6 @@ public class CreateTeamViewModel extends ViewModel {
         support.addPropertyChangeListener(listener);
     }
 
-    public String getViewName() {
-        return null;
-    }
     public CreateTeamState getState() {
         return state;
     }

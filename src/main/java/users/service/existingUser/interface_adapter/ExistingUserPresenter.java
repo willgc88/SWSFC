@@ -2,11 +2,9 @@ package users.service.existingUser.interface_adapter;
 
 import teams.service.createTeam.interface_adapter.CreateTeamState;
 import teams.service.createTeam.interface_adapter.CreateTeamViewModel;
-import users.service.existingUser.ExistingUserInputBoundary;
 import users.service.existingUser.ExistingUserOutputBoundary;
 import users.service.existingUser.ExistingUserOutputData;
-import users.service.loggedIn.interface_adapter.LoggedInState;
-import users.service.loggedIn.interface_adapter.LoggedInViewModel;
+
 import view.ViewManagerModel;
 
 public class ExistingUserPresenter implements ExistingUserOutputBoundary {
@@ -25,13 +23,12 @@ public class ExistingUserPresenter implements ExistingUserOutputBoundary {
 
     @Override
     public void prepareSuccessView(ExistingUserOutputData response) {
-        // On success, switch to the logged in view.
 
         CreateTeamState createTeamState = createTeamViewModel.getState();
-        createTeamState.setTeamName(response.getTeamName());
+        createTeamState.setUsername(response.getUsername());
         this.createTeamViewModel.setState(createTeamState);
         this.createTeamViewModel.firePropertyChanged();
-
+        System.out.println(response.getUsername());
         this.viewManagerModel.setActiveView(createTeamViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
     }

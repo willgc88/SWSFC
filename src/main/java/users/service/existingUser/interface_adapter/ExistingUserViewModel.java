@@ -9,7 +9,7 @@ public class ExistingUserViewModel extends ViewModel {
     public final String TITLE_LABEL = "Existing User View";
     public final String USERNAME_LABEL = "Enter username";
 
-    public static final String EXISTING_USER_BUTTON_LABEL = "Existing User";
+    public static final String EXISTING_USER_BUTTON_LABEL = "Log in";
     public static final String CANCEL_BUTTON_LABEL = "Cancel";
 
     private ExistingUserState state = new ExistingUserState();

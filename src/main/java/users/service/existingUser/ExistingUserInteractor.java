@@ -18,7 +18,6 @@ public class ExistingUserInteractor implements ExistingUserInputBoundary {
         if (!userDataAccessObject.existsByName(username)) {
             loginPresenter.prepareFailView(username + ": Account does not exist.");
             } else {
-
                 User user = userDataAccessObject.get(existingUserInputData.getUsername());
 
                 ExistingUserOutputData existingUserOutputData = new ExistingUserOutputData(user.getName(), false);
