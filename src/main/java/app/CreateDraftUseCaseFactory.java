@@ -23,6 +23,7 @@ public class CreateDraftUseCaseFactory {
             ViewManagerModel viewManagerModel, DraftViewModel draftViewModel){
         try {
             DraftController draftController = createDraftUseCase(viewManagerModel, draftViewModel);
+
             return new DraftView(draftController, draftViewModel);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Could not access data");
