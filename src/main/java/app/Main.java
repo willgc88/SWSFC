@@ -79,7 +79,7 @@ public class Main {
         DraftView draftView = CreateDraftUseCaseFactory.create(viewManagerModel, draftViewModel);
         views.add(draftView, draftView.viewName);
 
-        viewManagerModel.setActiveView(draftView.viewName);
+        viewManagerModel.setActiveView(createTeamView.viewName);
         viewManagerModel.firePropertyChanged();
 
         application.pack();

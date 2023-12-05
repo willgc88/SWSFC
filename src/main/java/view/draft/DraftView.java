@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.jar.JarOutputStream;
 
 public class DraftView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "draft";
@@ -22,9 +23,9 @@ public class DraftView extends JPanel implements ActionListener, PropertyChangeL
         this.draftViewModel = draftViewModel;
         draftViewModel.addPropertyChangeListener(this);
 
-        JLabel title = new JLabel("Draft Selector");
+        JLabel title = new JLabel("Player Draft for " + this.draftViewModel.getState().getTeamName());
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
-        
+
         int buttonWidth = 200;
         int buttonHeight = 150;
         JPanel forwards = new JPanel();
@@ -96,7 +97,7 @@ public class DraftView extends JPanel implements ActionListener, PropertyChangeL
         String p2Selection = (String)p2.getSelectedItem();
 
         if (e.getSource().equals(confirm)) {
-            System.out.println(p1Selection + p2Selection);
+           // draftController.execute();
         }
     }
 

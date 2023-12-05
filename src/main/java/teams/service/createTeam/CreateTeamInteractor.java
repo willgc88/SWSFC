@@ -19,7 +19,7 @@ public class CreateTeamInteractor implements CreateTeamInputBoundary {
     @Override
     public void execute(CreateTeamInputData createTeamInputData) {
         if (createTeamDataAccessObject.existsByName(createTeamInputData.getTeamName())) {
-            teamPresenter.prepareFailView("Team with the such name already exists");
+            teamPresenter.prepareFailView("Team with this name already exists");
         } else {
             Team team = teamFactory.create(createTeamInputData.getTeamName(), null,0, 0);
 
