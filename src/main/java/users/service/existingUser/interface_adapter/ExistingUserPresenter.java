@@ -1,5 +1,7 @@
 package users.service.existingUser.interface_adapter;
 
+import teams.service.createTeam.interface_adapter.CreateTeamState;
+import teams.service.createTeam.interface_adapter.CreateTeamViewModel;
 import users.service.existingUser.ExistingUserInputBoundary;
 import users.service.existingUser.ExistingUserOutputBoundary;
 import users.service.existingUser.ExistingUserOutputData;
@@ -10,27 +12,26 @@ import view.ViewManagerModel;
 public class ExistingUserPresenter implements ExistingUserOutputBoundary {
 
     private final ExistingUserViewModel existingUserViewModel;
-    private final LoggedInViewModel loggedInViewModel;
-    private ViewManagerModel viewManagerModel;
+    private final CreateTeamViewModel createTeamViewModel;
+    private final ViewManagerModel viewManagerModel;
 
     public ExistingUserPresenter(ViewManagerModel viewManagerModel,
-                                 LoggedInViewModel loggedInViewModel,
+                                 CreateTeamViewModel createTeamViewModel,
                                  ExistingUserViewModel existingUserViewModel) {
         this.viewManagerModel = viewManagerModel;
-        this.loggedInViewModel = loggedInViewModel;
+        this.createTeamViewModel = createTeamViewModel;
         this.existingUserViewModel = existingUserViewModel;
     }
 
     @Override
     public void prepareSuccessView(ExistingUserOutputData response) {
-        // On success, switch to the logged in view.
 
-        LoggedInState loggedInState = loggedInViewModel.getState();
-        loggedInState.setUsername(response.getUsername());
-        this.loggedInViewModel.setState(loggedInState);
-        this.loggedInViewModel.firePropertyChanged();
 
-        this.viewManagerModel.setActiveView(loggedInViewModel.getViewName());
+        CreateTeamState createTeamState = createTeamViewModel.getState();
+        this.createTeamViewModel.setState(createTeamState);
+        this.createTeamViewModel.firePropertyChanged();
+
+        this.viewManagerModel.setActiveView(createTeamViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
     }
 

@@ -1,13 +1,8 @@
 package teams.entity;
-import api.ApiRequest;
-import okhttp3.Response;
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.io.IOException;
 
 
 public class PlayerFactory {
+
 
     public PlayerFactory() {
     }
@@ -44,16 +39,5 @@ public class PlayerFactory {
 
         //return new Player(firstname, lastname, nation, club, age, playerID);
         return null;
-    }
-
-        private static String getClubName(JSONObject playerData) {
-        try {
-            JSONObject team = playerData.getJSONArray("statistics").getJSONObject(0).getJSONObject("team");
-
-            return team.getString("name");
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "Unknown Club";  // Default value or handle the error as needed
-        }
     }
 }

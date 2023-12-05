@@ -10,9 +10,7 @@ public class CreateTeamController {
     }
 
     public void execute(String teamName) {
-        CreateTeamInputData createTeamInputData = new CreateTeamInputData(
-                teamName);
-
+        CreateTeamInputData createTeamInputData = new CreateTeamInputData(teamName);
         createTeamUseCaseInteractor.execute(createTeamInputData);
     }
 }

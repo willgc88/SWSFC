@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import teams.entity.Player;
 
 import java.io.IOException;
+
 import java.util.*;
 
 
@@ -45,12 +46,8 @@ public class ApiRequest {
         String responseBody;
         Request request = new Request.Builder()
                 .url(url)
-                .get()
-                .addHeader("X-RapidAPI-Key", "168092cdc6msh053297dfb2b0373p1b37abjsnf5ab4ec25b34")
-                .addHeader("X-RapidAPI-Host", "api-football-v1.p.rapidapi.com")
-                .build();
-        try {
-            Response response = client.newCall(request).execute();
+
+
             responseBody = response.body().string();
         } catch (IOException e) {
             throw new RuntimeException(e);
