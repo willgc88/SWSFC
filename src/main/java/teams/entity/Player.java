@@ -1,29 +1,21 @@
 package teams.entity;
 
 public class Player {
+    //updated player
 
-    final String firstname;
-    final String lastname;
-    final String nation;
+    final String name;
     final String club;
-    final int age;
-    Team team = null;
+    final String position;
     final int playerID;
-    PlayerStats playerStats;
 
-    Player(String firstname, String lastname, String nation, String club, int age, int playerID) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.nation = nation;
+    public Player(String name, String club, String position, int playerID) {
+        this.name = name;
         this.club = club;
-        this.age = age;
+        this.position = position;
         this.playerID = playerID;
     }
-    public String getFirstname() {return firstname;}
-    public String getLastname() {return lastname;}
-    public String getNation() {return nation;}
-    public int getAge() {return age;}
-    public Team getTeam() {return team;}
+    public String getName() {return name;}
+    public String getPosition() {return position;}
+    public String getClub() {return club;}
     public int getPlayerID() {return playerID;}
-    public PlayerStats getPlayerStats() {return playerStats;}
 }
