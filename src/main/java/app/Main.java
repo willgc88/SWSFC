@@ -1,7 +1,8 @@
 package app;
 
 import data_access.FileUserDataAccessObject;
-import draft.DraftController;
+import draft.finalDraft.CreateFinalDraftUseCaseFactory;
+import view.FinalDraftViewModel;
 import teams.data_access.FileTeamDataAccessObject;
 import teams.entity.TeamFactory;
 import teams.service.createTeam.interface_adapter.CreateTeamViewModel;
@@ -10,6 +11,7 @@ import users.service.createUser.CreateUserUseCaseFactory;
 import users.service.existingUser.ExistingUserUseCaseFactory;
 import users.service.existingUser.interface_adapter.ExistingUserViewModel;
 import view.draft.DraftView;
+import view.draft.FinalDraftView;
 import view.startup.*;
 import users.service.createUser.interface_adapter.CreateUserViewModel;
 import view.DraftViewModel;
@@ -51,6 +53,7 @@ public class Main {
         CreateUserViewModel createUserViewModel = new CreateUserViewModel();
         DraftViewModel draftViewModel = new DraftViewModel();
         ExistingUserViewModel existingUserViewModel = new ExistingUserViewModel();
+        FinalDraftViewModel finalDraftViewModel = new FinalDraftViewModel();
 
         FileUserDataAccessObject userDataAccessObject;
         try {
@@ -78,8 +81,11 @@ public class Main {
         CreateTeamView createTeamView = CreateTeamUseCaseFactory.create(viewManagerModel, draftViewModel, createTeamViewModel, teamDataAccessObject);
         views.add(createTeamView, createTeamView.viewName);
 
-        DraftView draftView = CreateDraftUseCaseFactory.create(viewManagerModel, draftViewModel);
+        DraftView draftView = CreateDraftUseCaseFactory.create(viewManagerModel, draftViewModel, finalDraftViewModel);
         views.add(draftView, draftView.viewName);
+
+        FinalDraftView finalDraftView = CreateFinalDraftUseCaseFactory.create(viewManagerModel, finalDraftViewModel);
+        views.add(finalDraftView, finalDraftView.viewName);
 
         viewManagerModel.setActiveView(startupView.viewName);
         viewManagerModel.firePropertyChanged();

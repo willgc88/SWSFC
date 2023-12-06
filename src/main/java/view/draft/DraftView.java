@@ -30,7 +30,8 @@ public class DraftView extends JPanel implements ActionListener, PropertyChangeL
     String[] attackerNames = new String[20];
     String[] midfielderNames = new String[20];
     String[] defenderNames = new String[20];
-    String[] goalkeeperNames = new String[20];
+    String[] goalkeeperNames = new String[10];
+    String teamName;
     public DraftView(DraftController draftController, DraftViewModel draftViewModel) {
         this.draftController = draftController;
         this.draftViewModel = draftViewModel;
@@ -46,7 +47,7 @@ public class DraftView extends JPanel implements ActionListener, PropertyChangeL
             attackerNames[i] = attackersList.get(i).getName();
             midfielderNames[i] = midfieldersList.get(i).getName();
             defenderNames[i] = defendersList.get(i).getName();
-            if(i < 5) {
+            if (i<10) {
                 goalkeeperNames[i] = goalkeepersList.get(i).getName();
             }
         }
@@ -127,32 +128,33 @@ public class DraftView extends JPanel implements ActionListener, PropertyChangeL
         String p2Selection = (String)p2.getSelectedItem();
         playerList[1] = attackersList.get(List.of(attackerNames).indexOf(p2Selection));
         String p3Selection = (String)p3.getSelectedItem();
-        playerList[2] = attackersList.get(List.of(midfielderNames).indexOf(p3Selection));
+        playerList[2] = midfieldersList.get(List.of(midfielderNames).indexOf(p3Selection));
         String p4Selection = (String)p4.getSelectedItem();
-        playerList[3] = attackersList.get(List.of(midfielderNames).indexOf(p4Selection));
+        playerList[3] = midfieldersList.get(List.of(midfielderNames).indexOf(p4Selection));
         String p5Selection = (String)p5.getSelectedItem();
-        playerList[4] = attackersList.get(List.of(midfielderNames).indexOf(p5Selection));
+        playerList[4] = midfieldersList.get(List.of(midfielderNames).indexOf(p5Selection));
         String p6Selection = (String)p6.getSelectedItem();
-        playerList[5] = attackersList.get(List.of(midfielderNames).indexOf(p6Selection));
+        playerList[5] = midfieldersList.get(List.of(midfielderNames).indexOf(p6Selection));
         String p7Selection = (String)p7.getSelectedItem();
-        playerList[6] = attackersList.get(List.of(defenderNames).indexOf(p7Selection));
+        playerList[6] = defendersList.get(List.of(defenderNames).indexOf(p7Selection));
         String p8Selection = (String)p8.getSelectedItem();
-        playerList[7] = attackersList.get(List.of(defenderNames).indexOf(p8Selection));
+        playerList[7] = defendersList.get(List.of(defenderNames).indexOf(p8Selection));
         String p9Selection = (String)p9.getSelectedItem();
-        playerList[8] = attackersList.get(List.of(defenderNames).indexOf(p9Selection));
+        playerList[8] = defendersList.get(List.of(defenderNames).indexOf(p9Selection));
         String p10Selection = (String)p10.getSelectedItem();
-        playerList[9] = attackersList.get(List.of(defenderNames).indexOf(p10Selection));
+        playerList[9] = defendersList.get(List.of(defenderNames).indexOf(p10Selection));
         String p11Selection = (String)p11.getSelectedItem();
         playerList[10] = goalkeepersList.get(List.of(goalkeeperNames).indexOf(p11Selection));
 
         if (e.getSource().equals(confirm)) {
-           draftController.execute(playerList);
+           draftController.execute(playerList, teamName);
         }
     }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         DraftState state = (DraftState) evt.getNewValue();
-        title.setText("Player Draft for " + state.getTeamName());
+        teamName = state.getTeamName();
+        title.setText("Player Draft for " + teamName);
     }
 }

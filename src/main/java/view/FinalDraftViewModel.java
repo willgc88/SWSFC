@@ -1,15 +1,16 @@
 package view;
 
 import draft.DraftState;
+import draft.finalDraft.interfaceAdapters.FinalDraftState;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class DraftViewModel extends ViewModel {
-    public static final String TITLE_LABEL = "Draft Player Selector";
-    private DraftState state = new DraftState();
-    public DraftViewModel() { super("draft"); }
-    public void setState(DraftState state) {
+public class FinalDraftViewModel extends ViewModel{
+    public static final String TITLE_LABEL = "Final Draft";
+    private FinalDraftState state = new FinalDraftState();
+    public FinalDraftViewModel() { super("final draft"); }
+    public void setState(FinalDraftState state) {
         this.state = state;
     }
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
@@ -18,7 +19,7 @@ public class DraftViewModel extends ViewModel {
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
     }
-    public DraftState getState() {
+    public FinalDraftState getState() {
         return state;
     }
 }
