@@ -25,7 +25,6 @@ public class FileTeamDataAccessObject implements CreateTeamDataAccessInterface {
             try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
                 String header = reader.readLine();
                 assert header.equals("teamName");
-
                 String row;
                 while ((row = reader.readLine()) != null) {
                     String[] col = row.split(",");
@@ -47,8 +46,7 @@ public class FileTeamDataAccessObject implements CreateTeamDataAccessInterface {
         this.save();
     }
     private void save() {
-        try (BufferedReader reader = new BufferedReader(new FileReader(csvFile));
-             BufferedWriter writer = new BufferedWriter(new FileWriter(csvFile))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(csvFile))) {
 
 
             for (Team team : teams.values()) {

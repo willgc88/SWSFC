@@ -4,6 +4,7 @@ import data_access.FileUserDataAccessObject;
 import draft.DraftController;
 import teams.data_access.FileTeamDataAccessObject;
 import teams.entity.TeamFactory;
+import teams.entity.UserTeamFactory;
 import teams.service.createTeam.interface_adapter.CreateTeamViewModel;
 import users.entity.HumanUserFactory;
 import users.service.createUser.CreateUserUseCaseFactory;
@@ -61,7 +62,7 @@ public class Main {
 
         FileTeamDataAccessObject teamDataAccessObject;
         try {
-            teamDataAccessObject = new FileTeamDataAccessObject("./users.csv", new TeamFactory());
+            teamDataAccessObject = new FileTeamDataAccessObject("./users.csv", new UserTeamFactory());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
