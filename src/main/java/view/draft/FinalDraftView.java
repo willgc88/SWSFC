@@ -13,7 +13,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class FinalDraftView extends JPanel implements ActionListener, PropertyChangeListener {
-    public final String viewName = "Final draft";
+    public final String viewName = "final draft";
     private final FinalDraftViewModel finalDraftViewModel;
     private final FinalDraftController finalDraftController;
     private JLabel title;
@@ -39,6 +39,7 @@ public class FinalDraftView extends JPanel implements ActionListener, PropertyCh
 
         stats.setBackground(Color.DARK_GRAY);
         stats.setPreferredSize(new Dimension(4*buttonWidth,buttonHeight));
+
         p1 = new JLabel();
         p1.setPreferredSize(dim);
         p2 = new JLabel();

@@ -7,7 +7,6 @@ import java.beans.PropertyChangeSupport;
 
 public class DraftViewModel extends ViewModel {
     public static final String TITLE_LABEL = "Draft Player Selector";
-    public static final String ADD_PLAYER_LABEL = "Add new player";
     private DraftState state = new DraftState();
     public DraftViewModel() { super("draft"); }
     public void setState(DraftState state) {
