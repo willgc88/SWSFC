@@ -26,7 +26,6 @@ public class FinalDraftView extends JPanel implements ActionListener, PropertyCh
         finalDraftViewModel.addPropertyChangeListener(this);
 
         title = new JLabel("Final Draft");
-        title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         int buttonWidth = 200;
         int buttonHeight = 150;
@@ -92,6 +91,7 @@ public class FinalDraftView extends JPanel implements ActionListener, PropertyCh
     public void propertyChange(PropertyChangeEvent evt) {
         FinalDraftState state = (FinalDraftState) evt.getNewValue();
         title.setText("Final Draft for " + state.getTeamName());
+        title.setAlignmentX(Component.CENTER_ALIGNMENT);
         Player player1 = state.getPlayers()[0];
         Player player2 = state.getPlayers()[1];
         Player player3 = state.getPlayers()[2];
@@ -115,6 +115,8 @@ public class FinalDraftView extends JPanel implements ActionListener, PropertyCh
         p10.setText("<html>" + player10.getName() + "<br> Position: " + player10.getPosition() + "<br> Club: "+ player10.getClub() + "</html>");
         p11.setText("<html>" + player11.getName() + "<br> Position: " + player11.getPosition() + "<br> Club: "+ player11.getClub() + "</html>");
         stats.setText("STATS + RATING + CHEMISTRY");
+        stats.setAlignmentX(Component.CENTER_ALIGNMENT);
+        // update rating + chemistry values according to some algorithm
     }
 }
 
