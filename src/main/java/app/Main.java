@@ -87,7 +87,7 @@ public class Main {
         FinalDraftView finalDraftView = CreateFinalDraftUseCaseFactory.create(viewManagerModel, finalDraftViewModel);
         views.add(finalDraftView, finalDraftView.viewName);
 
-        viewManagerModel.setActiveView(createTeamView.viewName);
+        viewManagerModel.setActiveView(startupView.viewName);
         viewManagerModel.firePropertyChanged();
 
         application.pack();
