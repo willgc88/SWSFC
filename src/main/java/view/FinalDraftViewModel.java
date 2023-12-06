@@ -1,4 +1,4 @@
-package draft.finalDraft.interfaceAdapters;
+package view;
 
 import draft.DraftState;
 import draft.finalDraft.interfaceAdapters.FinalDraftState;
@@ -6,10 +6,10 @@ import draft.finalDraft.interfaceAdapters.FinalDraftState;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class FinalDraftViewModel {
+public class FinalDraftViewModel extends ViewModel{
     public static final String TITLE_LABEL = "Final Draft";
     private FinalDraftState state = new FinalDraftState();
-    public FinalDraftViewModel() { super("draft"); }
+    public FinalDraftViewModel() { super("final draft"); }
     public void setState(FinalDraftState state) {
         this.state = state;
     }

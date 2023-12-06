@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class FinalDraftState {
     public String teamName;
-    public Map<String, List<Player>> Players;
+    public Player[] players;
     public FinalDraftState(FinalDraftState copy) {
         teamName = copy.teamName;
     }
@@ -20,11 +20,11 @@ public class FinalDraftState {
         this.teamName = teamName;
     }
 
-    public void setPlayers(Map<String, List<Player>> map) {
-        this.Players = map;
+    public void setPlayers(Player[] players) {
+        this.players = players;
     }
 
-    public Map<String, List<Player>> getPlayers() {
-        return Players;
+    public Player[] getPlayers() {
+        return players;
     }
 }

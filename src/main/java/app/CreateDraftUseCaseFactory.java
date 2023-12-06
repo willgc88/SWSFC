@@ -2,18 +2,10 @@ package app;
 
 import api.ApiRequest;
 import draft.*;
-import teams.entity.TeamFactory;
-import teams.service.createTeam.CreateTeamDataAccessInterface;
-import teams.service.createTeam.CreateTeamInputBoundary;
-import teams.service.createTeam.CreateTeamInteractor;
-import teams.service.createTeam.CreateTeamOutputBoundary;
-import teams.service.createTeam.interface_adapter.CreateTeamController;
-import teams.service.createTeam.interface_adapter.CreateTeamPresenter;
-import teams.service.createTeam.interface_adapter.CreateTeamViewModel;
 import view.DraftViewModel;
+import view.FinalDraftViewModel;
 import view.ViewManagerModel;
 import view.draft.DraftView;
-import view.teams.CreateTeamView;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -21,9 +13,9 @@ import java.io.IOException;
 public class CreateDraftUseCaseFactory {
     private CreateDraftUseCaseFactory() {}
     public static DraftView create(
-            ViewManagerModel viewManagerModel, DraftViewModel draftViewModel){
+            ViewManagerModel viewManagerModel, DraftViewModel draftViewModel, FinalDraftViewModel finalDraftViewModel){
         try {
-            DraftController draftController = createDraftUseCase(viewManagerModel, draftViewModel);
+            DraftController draftController = createDraftUseCase(viewManagerModel, draftViewModel, finalDraftViewModel);
             draftViewModel.getState().setRandomPlayers(ApiRequest.apiRequest());
             return new DraftView(draftController, draftViewModel);
         } catch (IOException e) {
@@ -33,8 +25,8 @@ public class CreateDraftUseCaseFactory {
         return null;
     }
 
-    private static DraftController createDraftUseCase(ViewManagerModel viewManagerModel, DraftViewModel draftViewModel) throws IOException {
-        DraftOutputBoundary draftPresenter = new DraftPresenter(draftViewModel, viewManagerModel);
+    private static DraftController createDraftUseCase(ViewManagerModel viewManagerModel, DraftViewModel draftViewModel, FinalDraftViewModel finalDraftViewModel) throws IOException {
+        DraftOutputBoundary draftPresenter = new DraftPresenter(draftViewModel, viewManagerModel, finalDraftViewModel);
 
         DraftInputBoundary draftInteractor = new DraftInteractor(draftPresenter);
 

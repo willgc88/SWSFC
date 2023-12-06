@@ -2,7 +2,8 @@ package view.draft;
 
 import draft.finalDraft.interfaceAdapters.FinalDraftController;
 import draft.finalDraft.interfaceAdapters.FinalDraftState;
-import draft.finalDraft.interfaceAdapters.FinalDraftViewModel;
+import teams.entity.Player;
+import view.FinalDraftViewModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,57 +17,50 @@ public class FinalDraftView extends JPanel implements ActionListener, PropertyCh
     private final FinalDraftViewModel finalDraftViewModel;
     private final FinalDraftController finalDraftController;
     private JLabel title;
-    private final JComboBox<String> p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11;
-    private final JButton confirm;
+    private final JLabel p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11;
+    private final JLabel stats;
 
     public FinalDraftView(FinalDraftController finalDraftController, FinalDraftViewModel finalDraftViewModel) {
         this.finalDraftController = finalDraftController;
         this.finalDraftViewModel = finalDraftViewModel;
         finalDraftViewModel.addPropertyChangeListener(this);
 
-        title = new JLabel("Player Draft for " + this.finalDraftViewModel.getState().getTeamName());
+        title = new JLabel("Final Draft");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         int buttonWidth = 200;
         int buttonHeight = 150;
+        Dimension dim = new Dimension(buttonWidth, buttonHeight);
         JPanel forwards = new JPanel();
         JPanel midfielders = new JPanel();
         JPanel defenders = new JPanel();
         JPanel keeper = new JPanel();
+        stats = new JLabel();
 
-        p1 = new JComboBox<>(new String[]{"messi", "ronaldo", "nursultan", "will", "shayan"});
-        p1.setPreferredSize(new Dimension(buttonWidth, buttonHeight));
-        p1.addActionListener(this);
-        p2 = new JComboBox<>(new String[]{"messi", "ronaldo", "nursultan", "will", "shayan"});
-        p2.setPreferredSize(new Dimension(buttonWidth, buttonHeight));
-        p2.addActionListener(this);
-        p3 = new JComboBox<>(new String[]{"messi", "ronaldo", "nursultan", "will", "shayan"});
-        p3.setPreferredSize(new Dimension(buttonWidth, buttonHeight));
-        p3.addActionListener(this);
-        p4 = new JComboBox<>(new String[]{"messi", "ronaldo", "nursultan", "will", "shayan"});
-        p4.setPreferredSize(new Dimension(buttonWidth, buttonHeight));
-        p4.addActionListener(this);
-        p5 = new JComboBox<>(new String[]{"messi", "ronaldo", "nursultan", "will", "shayan"});
-        p5.setPreferredSize(new Dimension(buttonWidth, buttonHeight));
-        p5.addActionListener(this);
-        p6 = new JComboBox<>(new String[]{"messi", "ronaldo", "nursultan", "will", "shayan"});
-        p6.setPreferredSize(new Dimension(buttonWidth, buttonHeight));
-        p6.addActionListener(this);
-        p7 = new JComboBox<>(new String[]{"messi", "ronaldo", "nursultan", "will", "shayan"});
-        p7.setPreferredSize(new Dimension(buttonWidth, buttonHeight));
-        p7.addActionListener(this);
-        p8 = new JComboBox<>(new String[]{"messi", "ronaldo", "nursultan", "will", "shayan"});
-        p8.setPreferredSize(new Dimension(buttonWidth, buttonHeight));
-        p8.addActionListener(this);
-        p9 = new JComboBox<>(new String[]{"messi", "ronaldo", "nursultan", "will", "shayan"});
-        p9.setPreferredSize(new Dimension(buttonWidth, buttonHeight));
-        p9.addActionListener(this);
-        p10 = new JComboBox<>(new String[]{"messi", "ronaldo", "nursultan", "will", "shayan"});
-        p10.setPreferredSize(new Dimension(buttonWidth, buttonHeight));
-        p10.addActionListener(this);
-        p11 = new JComboBox<>(new String[]{"messi", "ronaldo", "nursultan", "will", "shayan"});
-        p11.setPreferredSize(new Dimension(buttonWidth, buttonHeight));
-        p11.addActionListener(this);
+        stats.setBackground(Color.DARK_GRAY);
+        stats.setPreferredSize(new Dimension(4*buttonWidth,buttonHeight));
+        p1 = new JLabel();
+        p1.setPreferredSize(dim);
+        p2 = new JLabel();
+        p2.setPreferredSize(dim);
+        p3 = new JLabel();
+        p3.setPreferredSize(dim);
+        p4 = new JLabel();
+        p4.setPreferredSize(dim);
+        p5 = new JLabel();
+        p5.setPreferredSize(dim);
+        p6 = new JLabel();
+        p6.setPreferredSize(dim);
+        p7 = new JLabel();
+        p7.setPreferredSize(dim);
+        p8 = new JLabel();
+        p8.setPreferredSize(dim);
+        p9 = new JLabel();
+        p9.setPreferredSize(dim);
+        p10 = new JLabel();
+        p10.setPreferredSize(dim);
+        p11 = new JLabel();
+        p11.setPreferredSize(dim);
 
         forwards.add(p1);
         forwards.add(p2);
@@ -79,10 +73,6 @@ public class FinalDraftView extends JPanel implements ActionListener, PropertyCh
         defenders.add(p9);
         defenders.add(p10);
         keeper.add(p11);
-        JPanel confirmPanel = new JPanel();
-        confirm = new JButton("Confirm Selection");
-        confirm.addActionListener(this);
-        confirmPanel.add(confirm);
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         this.add(title);
@@ -90,22 +80,40 @@ public class FinalDraftView extends JPanel implements ActionListener, PropertyCh
         this.add(midfielders);
         this.add(defenders);
         this.add(keeper);
-        this.add(confirmPanel);
+        this.add(stats);
     }
 
     public void actionPerformed(ActionEvent e) {
-        String p1Selection = (String)p1.getSelectedItem();
-        String p2Selection = (String)p2.getSelectedItem();
 
-        if (e.getSource().equals(confirm)) {
-             finalDraftController.execute(p1, p1Selection);
-        }
     }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         FinalDraftState state = (FinalDraftState) evt.getNewValue();
-        title.setText("Player Draft for " + state.getTeamName());
+        title.setText("Final Draft for " + state.getTeamName());
+        Player player1 = state.getPlayers()[0];
+        Player player2 = state.getPlayers()[1];
+        Player player3 = state.getPlayers()[2];
+        Player player4 = state.getPlayers()[3];
+        Player player5 = state.getPlayers()[4];
+        Player player6 = state.getPlayers()[5];
+        Player player7 = state.getPlayers()[6];
+        Player player8 = state.getPlayers()[7];
+        Player player9 = state.getPlayers()[8];
+        Player player10 = state.getPlayers()[9];
+        Player player11 = state.getPlayers()[10];
+        p1.setText("<html>" + player1.getName() + "<br> Position: " + player1.getPosition() + "<br> Club: "+ player1.getClub() + "</html>");
+        p2.setText("<html>" + player2.getName() + "<br> Position: " + player2.getPosition() + "<br> Club: "+ player2.getClub() + "</html>");
+        p3.setText("<html>" + player3.getName() + "<br> Position: " + player3.getPosition() + "<br> Club: "+ player3.getClub() + "</html>");
+        p4.setText("<html>" + player4.getName() + "<br> Position: " + player4.getPosition() + "<br> Club: "+ player4.getClub() + "</html>");
+        p5.setText("<html>" + player5.getName() + "<br> Position: " + player5.getPosition() + "<br> Club: "+ player5.getClub() + "</html>");
+        p6.setText("<html>" + player6.getName() + "<br> Position: " + player6.getPosition() + "<br> Club: "+ player6.getClub() + "</html>");
+        p7.setText("<html>" + player7.getName() + "<br> Position: " + player7.getPosition() + "<br> Club: "+ player7.getClub() + "</html>");
+        p8.setText("<html>" + player8.getName() + "<br> Position: " + player8.getPosition() + "<br> Club: "+ player8.getClub() + "</html>");
+        p9.setText("<html>" + player9.getName() + "<br> Position: " + player9.getPosition() + "<br> Club: "+ player9.getClub() + "</html>");
+        p10.setText("<html>" + player10.getName() + "<br> Position: " + player10.getPosition() + "<br> Club: "+ player10.getClub() + "</html>");
+        p11.setText("<html>" + player11.getName() + "<br> Position: " + player11.getPosition() + "<br> Club: "+ player11.getClub() + "</html>");
+        stats.setText("STATS + RATING + CHEMISTRY");
     }
 }
 

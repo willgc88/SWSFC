@@ -1,8 +1,8 @@
 package draft.finalDraft.interfaceAdapters;
 
-import draft.DraftOutputData;
 import draft.finalDraft.FinalDraftOutputBoundary;
 import draft.finalDraft.FinalDraftOutputData;
+import view.FinalDraftViewModel;
 import view.ViewManagerModel;
 
 public class FinalDraftPresenter implements FinalDraftOutputBoundary {
@@ -16,7 +16,7 @@ public class FinalDraftPresenter implements FinalDraftOutputBoundary {
 
     @Override
     public void prepareSuccessView(FinalDraftOutputData data) {
-        //switch to team info view
+
     }
 
     @Override

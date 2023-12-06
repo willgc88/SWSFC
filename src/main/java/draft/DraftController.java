@@ -8,8 +8,8 @@ public class DraftController {
         this.draftInteractor = draftInteractor;
     }
 
-    public void execute(Player[] players) {
-        DraftInputData draftInputData = new DraftInputData(players);
+    public void execute(Player[] players, String teamName) {
+        DraftInputData draftInputData = new DraftInputData(players, teamName);
         draftInteractor.execute(draftInputData);
     }
 }

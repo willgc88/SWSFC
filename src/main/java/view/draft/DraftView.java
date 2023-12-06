@@ -30,7 +30,8 @@ public class DraftView extends JPanel implements ActionListener, PropertyChangeL
     String[] attackerNames = new String[20];
     String[] midfielderNames = new String[20];
     String[] defenderNames = new String[20];
-    String[] goalkeeperNames = new String[20];
+    String[] goalkeeperNames = new String[10];
+    String teamName;
     public DraftView(DraftController draftController, DraftViewModel draftViewModel) {
         this.draftController = draftController;
         this.draftViewModel = draftViewModel;
@@ -46,7 +47,7 @@ public class DraftView extends JPanel implements ActionListener, PropertyChangeL
             attackerNames[i] = attackersList.get(i).getName();
             midfielderNames[i] = midfieldersList.get(i).getName();
             defenderNames[i] = defendersList.get(i).getName();
-            if(i < 5) {
+            if (i<10) {
                 goalkeeperNames[i] = goalkeepersList.get(i).getName();
             }
         }
@@ -146,13 +147,14 @@ public class DraftView extends JPanel implements ActionListener, PropertyChangeL
         playerList[10] = goalkeepersList.get(List.of(goalkeeperNames).indexOf(p11Selection));
 
         if (e.getSource().equals(confirm)) {
-           draftController.execute(playerList);
+           draftController.execute(playerList, teamName);
         }
     }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         DraftState state = (DraftState) evt.getNewValue();
-        title.setText("Player Draft for " + state.getTeamName());
+        teamName = state.getTeamName();
+        title.setText("Player Draft for " + teamName);
     }
 }

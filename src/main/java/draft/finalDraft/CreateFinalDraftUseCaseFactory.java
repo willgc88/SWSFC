@@ -1,12 +1,9 @@
 package draft.finalDraft;
 
-import draft.*;
 import draft.finalDraft.interfaceAdapters.FinalDraftController;
 import draft.finalDraft.interfaceAdapters.FinalDraftPresenter;
-import draft.finalDraft.interfaceAdapters.FinalDraftViewModel;
-import view.DraftViewModel;
+import view.FinalDraftViewModel;
 import view.ViewManagerModel;
-import view.draft.DraftView;
 import view.draft.FinalDraftView;
 
 import javax.swing.*;
