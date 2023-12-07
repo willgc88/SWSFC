@@ -1,5 +1,6 @@
 package view.draft;
 
+import app.RatingCalculator;
 import draft.finalDraft.interfaceAdapters.FinalDraftController;
 import draft.finalDraft.interfaceAdapters.FinalDraftState;
 import teams.entity.Player;
@@ -17,7 +18,17 @@ public class FinalDraftView extends JPanel implements ActionListener, PropertyCh
     private final FinalDraftViewModel finalDraftViewModel;
     private final FinalDraftController finalDraftController;
     private JLabel title;
-    private final JLabel p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11;
+    public final JLabel p1;
+    public final JLabel p2;
+    private final JLabel p3;
+    private final JLabel p4;
+    private final JLabel p5;
+    private final JLabel p6;
+    private final JLabel p7;
+    private final JLabel p8;
+    private final JLabel p9;
+    private final JLabel p10;
+    private final JLabel p11;
     private final JLabel stats;
 
     public FinalDraftView(FinalDraftController finalDraftController, FinalDraftViewModel finalDraftViewModel) {
@@ -114,9 +125,10 @@ public class FinalDraftView extends JPanel implements ActionListener, PropertyCh
         p9.setText("<html>" + player9.getName() + "<br> Position: " + player9.getPosition() + "<br> Club: "+ player9.getClub() + "</html>");
         p10.setText("<html>" + player10.getName() + "<br> Position: " + player10.getPosition() + "<br> Club: "+ player10.getClub() + "</html>");
         p11.setText("<html>" + player11.getName() + "<br> Position: " + player11.getPosition() + "<br> Club: "+ player11.getClub() + "</html>");
-        stats.setText("STATS + RATING + CHEMISTRY");
+        RatingCalculator rating = new RatingCalculator();
+        String finalRating = rating.RatingCalculator(state);
+        stats.setText(String.valueOf(finalRating));
         stats.setAlignmentX(Component.CENTER_ALIGNMENT);
-        // update rating + chemistry values according to some algorithm
     }
 }
 

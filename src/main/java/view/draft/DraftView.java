@@ -20,8 +20,18 @@ public class DraftView extends JPanel implements ActionListener, PropertyChangeL
     private final DraftViewModel draftViewModel;
     private final DraftController draftController;
     private JLabel title;
-    private final JComboBox<String> p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11;
-    private final JButton confirm;
+    public final JComboBox<String> p1;
+    public final JComboBox<String> p2;
+    private final JComboBox<String> p3;
+    private final JComboBox<String> p4;
+    private final JComboBox<String> p5;
+    private final JComboBox<String> p6;
+    private final JComboBox<String> p7;
+    private final JComboBox<String> p8;
+    private final JComboBox<String> p9;
+    private final JComboBox<String> p10;
+    private final JComboBox<String> p11;
+    public final JButton confirm;
     Map<String, List<Player>> randomPlayers;
     List<Player> attackersList;
     List<Player> midfieldersList;
@@ -157,4 +167,5 @@ public class DraftView extends JPanel implements ActionListener, PropertyChangeL
         teamName = state.getTeamName();
         title.setText("Player Draft for " + teamName);
     }
+
 }
