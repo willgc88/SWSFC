@@ -1,6 +1,7 @@
 package app;
 
 import teams.entity.TeamFactory;
+import teams.entity.UserTeamFactory;
 import teams.service.createTeam.CreateTeamDataAccessInterface;
 import teams.service.createTeam.CreateTeamInputBoundary;
 import teams.service.createTeam.CreateTeamInteractor;
@@ -36,7 +37,7 @@ public class CreateTeamUseCaseFactory {
     private static CreateTeamController createTeamUseCase(ViewManagerModel viewManagerModel, CreateTeamViewModel createTeamViewModel, DraftViewModel draftViewModel, CreateTeamDataAccessInterface createTeamDataAccessObject) throws IOException {
         // Notice how we pass this method's parameters to the Presenter.
         CreateTeamOutputBoundary createTeamOutputBoundary = new CreateTeamPresenter(createTeamViewModel, draftViewModel, viewManagerModel);
-        TeamFactory teamFactory = new TeamFactory();
+        TeamFactory teamFactory = new UserTeamFactory();
 
         CreateTeamInputBoundary createTeamInteractor = new CreateTeamInteractor(
                 createTeamDataAccessObject, createTeamOutputBoundary, teamFactory);

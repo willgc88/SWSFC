@@ -10,4 +10,11 @@ public class DraftOutputData {
         this.players = players;
     }
 
+    public Player[] getPlayers() {
+        return players;
+    }
+
+    public String getTeamName() {
+        return teamName;
+    }
 }
