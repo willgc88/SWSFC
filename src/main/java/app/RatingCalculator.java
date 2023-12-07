@@ -36,9 +36,9 @@ public class RatingCalculator {
         }
 
         int chemistry = getChemistry(listOfPlayers);
-        int roundedValue = Math.round(rating+chemistry);
+        long roundedValue = Math.round((rating+chemistry) / 1.5);
 
-        return "Your rating is:" + rating +"! Your chemistry is: " + chemistry +". FINAL RATING: " + roundedValue;
+        return "<html><div style='text-align: center;'>Your rating is: " + rating +"! Your chemistry is: " + chemistry +". <br>FINAL RATING: " + roundedValue + "</html>";
     }
 
     private static int getChemistry(Player[] listOfPlayers) {

@@ -102,6 +102,7 @@ public class FinalDraftView extends JPanel implements ActionListener, PropertyCh
     public void propertyChange(PropertyChangeEvent evt) {
         FinalDraftState state = (FinalDraftState) evt.getNewValue();
         title.setText("Final Draft for " + state.getTeamName());
+        title.setFont(new Font("Serif", Font.BOLD, 20));
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         Player player1 = state.getPlayers()[0];
         Player player2 = state.getPlayers()[1];
@@ -129,6 +130,7 @@ public class FinalDraftView extends JPanel implements ActionListener, PropertyCh
         String finalRating = rating.RatingCalculator(state);
         stats.setText(String.valueOf(finalRating));
         stats.setAlignmentX(Component.CENTER_ALIGNMENT);
+        stats.setFont(new Font("Serif", Font.BOLD, 22));
     }
 }
 

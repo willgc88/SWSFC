@@ -166,6 +166,7 @@ public class DraftView extends JPanel implements ActionListener, PropertyChangeL
         DraftState state = (DraftState) evt.getNewValue();
         teamName = state.getTeamName();
         title.setText("Player Draft for " + teamName);
+        title.setFont(new Font("Serif", Font.BOLD, 20));
     }
 
 }
