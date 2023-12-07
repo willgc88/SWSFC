@@ -118,5 +118,9 @@ public class FinalDraftView extends JPanel implements ActionListener, PropertyCh
         stats.setAlignmentX(Component.CENTER_ALIGNMENT);
         // update rating + chemistry values according to some algorithm
     }
+
+    public JLabel getTitle() {
+        return title;
+    }
 }
 

@@ -157,4 +157,8 @@ public class DraftView extends JPanel implements ActionListener, PropertyChangeL
         teamName = state.getTeamName();
         title.setText("Player Draft for " + teamName);
     }
+
+    public JComboBox<String> getP1ComboBox() {
+        return p1;
+    }
 }
