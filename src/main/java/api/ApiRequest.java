@@ -33,6 +33,7 @@ public class ApiRequest {
         for (String url : teams) {
             mergeValues(result, makeAPIRequest(url));
         }
+
         return result;
     }
 
