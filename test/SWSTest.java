@@ -1,15 +1,29 @@
+import draft.DraftController;
+import draft.DraftInputBoundary;
+import draft.finalDraft.FinalDraftInputBoundary;
+import draft.finalDraft.interfaceAdapters.FinalDraftController;
+import draft.finalDraft.interfaceAdapters.FinalDraftState;
+import org.junit.Before;
+import org.junit.Test;
+import teams.entity.Player;
 import users.service.createUser.CreateUserInputBoundary;
 import users.service.createUser.interface_adapter.CreateUserController;
 import users.service.createUser.interface_adapter.CreateUserViewModel;
 import users.service.existingUser.ExistingUserInputBoundary;
 import users.service.existingUser.interface_adapter.ExistingUserController;
 import users.service.existingUser.interface_adapter.ExistingUserViewModel;
+import view.DraftViewModel;
+import view.FinalDraftViewModel;
 import view.LabelTextPanel;
+import view.draft.DraftView;
+import view.draft.FinalDraftView;
 import view.users.CreateUserView;
 import view.users.ExistingUserView;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.beans.PropertyChangeEvent;
 
 import static java.lang.Thread.sleep;
 import static org.junit.Assert.assertEquals;
@@ -191,8 +205,47 @@ public class SWSTest {
         assertEquals("ex", viewModel.getState().getUsername());
     }
 
+    @org.junit.Test
+    public void testDraftView() {
+        DraftInputBoundary duib = null;
+        DraftController draftController = new DraftController(duib);
+        DraftViewModel draftViewModel = new DraftViewModel();
+        DraftView draftViewPanel = new DraftView(draftController, draftViewModel);
+        JFrame jf = new JFrame();
+        jf.setContentPane(draftViewPanel);
+        jf.pack();
+        jf.setVisible(true);
+
+        // get a reference to one of the JComboBox components
+        JComboBox<String> p1ComboBox = draftViewPanel.getP1ComboBox();
+
+        // create and dispatch ActionEvent to the JComboBox
+        ActionEvent event = new ActionEvent(
+                p1ComboBox, // we are interacting with the p1ComboBox
+                ActionEvent.ACTION_PERFORMED,
+                "Item selected"
+        );
+        p1ComboBox.setSelectedIndex(1);
+        p1ComboBox.getActionListeners()[0].actionPerformed(event);
+
+        // pause execution for a second
+        try {
+            sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        // print the current values of the JComboBox and view-model
+        System.out.println("Selected item in JComboBox: " + p1ComboBox.getSelectedItem());
+        System.out.println("view-model state: " + draftViewModel.getState());
+
+        // assert that the values are as expected.
+        assertEquals("Second Item", p1ComboBox.getSelectedItem());
+    }
 
 }
+
+
 
 
 

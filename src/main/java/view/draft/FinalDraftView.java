@@ -133,5 +133,9 @@ public class FinalDraftView extends JPanel implements ActionListener, PropertyCh
         stats.setAlignmentX(JLabel.CENTER_ALIGNMENT);
         stats.setFont(new Font("Serif", Font.BOLD, 22));
     }
+
+    public JLabel getTitle() {
+        return title;
+    }
 }
 

@@ -63,4 +63,11 @@ public class StartupView extends JPanel implements ActionListener, PropertyChang
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
     }
+    public JButton getSignupButton() {
+        return signup;
+    }
+
+    public JButton getLoginButton() {
+        return login;
+    }
 }

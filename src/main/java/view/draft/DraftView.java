@@ -169,4 +169,9 @@ public class DraftView extends JPanel implements ActionListener, PropertyChangeL
         title.setFont(new Font("Serif", Font.BOLD, 20));
     }
 
+
+    public JComboBox<String> getP1ComboBox() {
+        return p1;
+    }
+
 }
