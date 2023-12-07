@@ -8,10 +8,10 @@ public class FinalDraftOutputData {
         this.selection = selection;
     }
 
-    int getPosition() {
+    public int getPosition() {
         return position;
     }
-    int getSelection() {
+    public int getSelection() {
         return selection;
     }
 }

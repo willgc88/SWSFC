@@ -34,6 +34,7 @@ public class ApiRequest {
             mergeValues(result, makeAPIRequest(url));
         }
 
+       shuffleLists(result);
         return result;
     }
 
@@ -60,7 +61,7 @@ public class ApiRequest {
 
         return teamMap;
     }
-    private static List<Player> extractPlayersByPosition(String jsonResponse, String position) {
+    public static List<Player> extractPlayersByPosition(String jsonResponse, String position) {
         List<Player> defenders = new ArrayList<>();
 
         // Parse the JSON response using org.json library
@@ -85,6 +86,12 @@ public class ApiRequest {
 
         return defenders;
     }
+    private static void shuffleLists(Map<String, List<Player>> positionPlayersMap) {
+        for (List<Player> players : positionPlayersMap.values()) {
+            Collections.shuffle(players);
+        }
+    }
+
     private static void mergeValues(Map<String, List<Player>> result, Map<String, List<Player>> map) {
         for (Map.Entry<String, List<Player>> entry : map.entrySet()) {
             String key = entry.getKey();
